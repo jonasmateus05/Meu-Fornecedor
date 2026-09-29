@@ -52,8 +52,8 @@ export const pageContent = {
         { title: 'PRODUTOS A PARTIR DE R$ 2,00', description: 'Opções para quem busca começar com um investimento menor.' },
       ],
       proofs: [
-        { src: '/images/prova-experiencia-instagram.webp', alt: 'Prova de experiência: perfil do Instagram @amandasilva_ com conteúdos de beleza, maquiagem e bijuterias', label: 'PROVA DE EXPERIÊNCIA', ratio: '3:4' as const, caption: 'Registros reais da experiência no ramo de acessórios.' },
-        { src: '/images/prova-produto-app.webp', alt: 'Prova do produto: aplicativo Meu Fornecedor mostrando as categorias de fornecedores', label: 'PROVA DO PRODUTO', ratio: '3:4' as const, caption: 'Os fornecedores organizados para facilitar sua busca.' },
+        { src: '/images/prova-experiencia-loja.webp', alt: 'Interior de loja física de bijuterias, folheados e semijoias, com expositores de acessórios e balcão de atendimento', label: 'PROVA DE EXPERIÊNCIA', ratio: '3:4' as const, caption: 'Experiência real no mercado de acessórios' },
+        { src: '/images/prova-produto-app.webp', alt: 'Prova do produto: aplicativo Meu Fornecedor mostrando as categorias de fornecedores', label: 'PROVA DO PRODUTO', ratio: '3:4' as const, caption: 'Fornecedores organizados para facilitar sua busca' },
       ],
     },
   },
