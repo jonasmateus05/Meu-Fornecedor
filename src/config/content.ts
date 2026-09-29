@@ -47,15 +47,15 @@ export const pageContent = {
     // Campos para prints de WhatsApp. Para ativar: suba o arquivo em public/images/ e preencha o src,
     // (caminho começando com /images/ + nome do arquivo). O bloco só aparece quando pelo menos um src estiver preenchido.
     prints: {
-      title: '',
-      subtitle: '',
+      title: 'NÃO É SÓ UMA LISTA DE FORNECEDORES. VEJA QUEM JÁ COMEÇOU A USAR.',
+      subtitle: 'Conversas reais de pessoas encontrando fornecedores, produtos e dando os primeiros passos para começar.',
       items: [
-        { src: '', alt: 'Print de conversa 01', label: 'Print 01', ratio: '1:1' as const },
-        { src: '', alt: 'Print de conversa 02', label: 'Print 02', ratio: '1:1' as const },
-        { src: '', alt: 'Print de conversa 03', label: 'Print 03', ratio: '1:1' as const },
-        { src: '', alt: 'Print de conversa 04', label: 'Print 04', ratio: '1:1' as const },
-        { src: '', alt: 'Print de conversa 05', label: 'Print 05', ratio: '1:1' as const },
-        { src: '', alt: 'Print de conversa 06', label: 'Print 06', ratio: '1:1' as const },
+        { src: '', alt: 'Print de conversa real no WhatsApp com compradora do Meu Fornecedor (01)', label: 'Print 01', ratio: '1:1' as const },
+        { src: '', alt: 'Print de conversa real no WhatsApp com compradora do Meu Fornecedor (02)', label: 'Print 02', ratio: '1:1' as const },
+        { src: '', alt: 'Print de conversa real no WhatsApp com compradora do Meu Fornecedor (03)', label: 'Print 03', ratio: '1:1' as const },
+        { src: '', alt: 'Print de conversa real no WhatsApp com compradora do Meu Fornecedor (04)', label: 'Print 04', ratio: '1:1' as const },
+        { src: '', alt: 'Print de conversa real no WhatsApp com compradora do Meu Fornecedor (05)', label: 'Print 05', ratio: '1:1' as const },
+        { src: '', alt: 'Print de conversa real no WhatsApp com compradora do Meu Fornecedor (06)', label: 'Print 06', ratio: '1:1' as const },
       ],
     },
     authority: {
