@@ -67,8 +67,8 @@ export const pageContent = {
         { title: 'PRODUTOS A PARTIR DE R$\u00a02,00', description: 'Opções para quem busca começar com um investimento menor.' },
       ],
       proofs: [
-        { src: '/images/prova-experiencia-loja.webp', alt: 'Interior de loja física de bijuterias, folheados e semijoias, com expositores de acessórios e balcão de atendimento', label: 'PROVA DE EXPERIÊNCIA', ratio: '3:4' as const, caption: 'Experiência real no mercado de acessórios' },
-        { src: '/images/prova-loja-fisica-espaco.webp', alt: 'Interior da loja física com expositores brancos, balcão de vidro e painéis canaletados', label: 'PROVA DA LOJA FÍSICA', ratio: '3:4' as const, caption: 'Espaço da loja física de acessórios' },
+        { src: '/images/prova-loja-fisica-espaco.webp', alt: 'Loja física no início, ainda vazia, com expositores brancos, balcão de vidro e painéis canaletados', label: 'LOJA NO INÍCIO', ratio: '3:4' as const, caption: 'Loja quando tudo começou' },
+        { src: '/images/prova-experiencia-loja.webp', alt: 'Loja física hoje: interior de loja de bijuterias, folheados e semijoias, com expositores de acessórios e balcão de atendimento', label: 'LOJA HOJE', ratio: '3:4' as const, caption: 'Loja como está hoje' },
       ],
     },
   },
