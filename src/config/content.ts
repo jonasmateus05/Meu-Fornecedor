@@ -2,6 +2,7 @@ export type MediaItem = { src: string; alt: string; label: string; ratio: '1:1' 
 export type ProductItem = MediaItem & { eyebrow: string; title: string; description: string }
 
 // Capitalização mantida exatamente como na copy final do Meu Fornecedor.
+// Trechos entre **asteriscos** são exibidos em destaque (negrito, #1f1f1f).
 export const pageContent = {
   urgencyBar: {
     // Desativada: a copy do Meu Fornecedor não define texto para a faixa superior (não inventar urgência).
@@ -11,8 +12,8 @@ export const pageContent = {
   hero: {
     image: '/images/hero-mockup-meu-fornecedor.webp',
     imageAlt: 'Mockup do aplicativo Meu Fornecedor',
-    headline: 'ENCONTRE FORNECEDORES DE ACESSÓRIOS PARA COMEÇAR SUA LOJA COM PRODUTOS A PARTIR DE R$ 2,00',
-    body: '21 fornecedores organizados em um aplicativo para você encontrar onde comprar bijuterias, semijoias e acessórios femininos.',
+    headline: 'ENCONTRE FORNECEDORES DE ACESSÓRIOS PARA COMEÇAR SUA LOJA COM **PRODUTOS A PARTIR DE R$\u00a02,00**',
+    body: '**21 fornecedores organizados em um aplicativo** para você encontrar onde comprar bijuterias, semijoias e acessórios femininos.',
     paragraphs: [
       'Reunidos por quem trabalha há 14 anos com acessórios.',
     ],
@@ -49,7 +50,7 @@ export const pageContent = {
       stats: [
         { title: '14 ANOS DE EXPERIÊNCIA NO RAMO', description: 'Experiência prática com acessórios femininos e revenda.' },
         { title: '21 FORNECEDORES ORGANIZADOS', description: 'Fornecedores reunidos e organizados dentro do aplicativo.' },
-        { title: 'PRODUTOS A PARTIR DE R$ 2,00', description: 'Opções para quem busca começar com um investimento menor.' },
+        { title: 'PRODUTOS A PARTIR DE R$\u00a02,00', description: 'Opções para quem busca começar com um investimento menor.' },
       ],
       proofs: [
         { src: '/images/prova-experiencia-loja.webp', alt: 'Interior de loja física de bijuterias, folheados e semijoias, com expositores de acessórios e balcão de atendimento', label: 'PROVA DE EXPERIÊNCIA', ratio: '3:4' as const, caption: 'Experiência real no mercado de acessórios' },

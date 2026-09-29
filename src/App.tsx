@@ -10,6 +10,8 @@ const placeholder = (item: MediaItem, priority = false) => item.src ? (
   <img src={item.src} alt={item.alt} loading={priority ? 'eager' : 'lazy'} fetchPriority={priority ? 'high' : 'auto'} />
 ) : <div className="placeholder" role="img" aria-label={item.alt}><span>{item.label}</span><small>{item.ratio === '3:2' ? '1200 × 800' : item.ratio === '3:4' ? '1200 × 1600' : item.ratio === '2:3' ? '1200 × 1800' : '1200 × 1200'} • {item.ratio}</small></div>
 
+const rich = (text: string) => text.split(/\*\*(.+?)\*\*/g).map((part, i) => i % 2 ? <strong key={i}>{part}</strong> : part)
+
 function Button({ children, onClick, href, kind = 'primary' }: { children: React.ReactNode; onClick?: () => void; href?: string; kind?: 'primary' | 'secondary' }) {
   const className = `button button-${kind}`
   return href ? <a className={className} href={href}>{children}</a> : <button className={className} type="button" onClick={onClick}>{children}</button>
@@ -177,7 +179,7 @@ function App() {
   return <>
     <UrgencyBar />
     <main>
-      <section className="hero"><div className="container hero-inner"><div className="hero-media">{placeholder({ src: pageContent.hero.image, alt: pageContent.hero.imageAlt, label: 'Imagem da Hero', ratio: '3:2' }, true)}</div><h1>{pageContent.hero.headline}</h1><p className="lead">{pageContent.hero.body}</p>
+      <section className="hero"><div className="container hero-inner"><div className="hero-media">{placeholder({ src: pageContent.hero.image, alt: pageContent.hero.imageAlt, label: 'Imagem da Hero', ratio: '3:2' }, true)}</div><h1>{rich(pageContent.hero.headline)}</h1><p className="lead">{rich(pageContent.hero.body)}</p>
         <div className="hero-copy">{pageContent.hero.paragraphs.map(text => <p key={text}>{text}</p>)}</div>
         <div className="hero-action"><Button onClick={() => document.getElementById('ofertas')?.scrollIntoView({ behavior: 'smooth' })}>{pageContent.hero.ctaLabel}</Button><p className="hero-price"><b>{pageContent.hero.product.price}</b> {pageContent.hero.product.note}</p><FeatureList items={pageContent.hero.checklist} /><p className="hero-note">{pageContent.hero.ctaNote}</p><img src={pageContent.hero.securityImage} alt={pageContent.hero.securityImageAlt} /></div></div></section>
       <section className="section section-muted"><div className="container"><h2 className="with-subtitle">{pageContent.results.title}</h2><Subtitle text={pageContent.results.subtitle} /><Carousel />
