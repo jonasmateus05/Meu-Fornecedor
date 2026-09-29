@@ -54,7 +54,6 @@ export const pageContent = {
       ],
       proofs: [
         { src: '/images/prova-experiencia-loja.webp', alt: 'Interior de loja física de bijuterias, folheados e semijoias, com expositores de acessórios e balcão de atendimento', label: 'PROVA DE EXPERIÊNCIA', ratio: '3:4' as const, caption: 'Experiência real no mercado de acessórios' },
-        { src: '/images/prova-produto-app.webp', alt: 'Prova do produto: aplicativo Meu Fornecedor mostrando as categorias de fornecedores', label: 'PROVA DO PRODUTO', ratio: '3:4' as const, caption: 'Fornecedores organizados para facilitar sua busca' },
       ],
     },
   },
@@ -64,9 +63,9 @@ export const pageContent = {
     accordionLabel: 'Clique aqui para ver descrição',
   },
   modules: [
-    { src: '/images/modulo-01-fornecedores.webp', alt: 'Imagem do módulo 01: fornecedores', label: 'Imagem do módulo 01', ratio: '1:1' as const, eyebrow: 'MÓDULO 01', title: 'FORNECEDORES', highlight: '21 fornecedores de bijuterias, semijoias e acessórios femininos.', description: 'Uma seleção de fornecedores reunidos para quem quer começar a vender acessórios ou encontrar novas opções para abastecer sua loja.' },
-    { src: '/images/modulo-02-produtos.webp', alt: 'Imagem do módulo 02: produtos', label: 'Imagem do módulo 02', ratio: '1:1' as const, eyebrow: 'MÓDULO 02', title: 'PRODUTOS', highlight: 'Acessórios com produtos a partir de R$ 2,00.', description: 'Encontre opções de produtos para analisar, escolher e negociar diretamente com os fornecedores conforme suas necessidades.' },
-    { src: '/images/modulo-03-acesso-app.webp', alt: 'Imagem do módulo 03: acesso pelo app', label: 'Imagem do módulo 03', ratio: '1:1' as const, eyebrow: 'MÓDULO 03', title: 'ACESSO PELO APP', highlight: 'Fornecedores organizados no aplicativo.', description: 'Em vez de depender de uma lista perdida no celular, você acessa os fornecedores pelo Meu Fornecedor e consulta as opções sempre que precisar.' },
+    { src: '/images/modulo-01-fornecedores.webp', alt: 'Módulo 01: telas do aplicativo com a lista de fornecedores e as categorias', label: 'Imagem do módulo 01', ratio: '1:1' as const, eyebrow: 'MÓDULO 01', title: 'FORNECEDORES', highlight: '21 fornecedores de bijuterias, semijoias e acessórios femininos.', description: 'Uma seleção de fornecedores reunidos para quem quer começar a vender acessórios ou encontrar novas opções para abastecer sua loja.' },
+    { src: '/images/modulo-02-produtos.webp', alt: 'Módulo 02: telas do aplicativo com o catálogo de produtos por categoria', label: 'Imagem do módulo 02', ratio: '1:1' as const, eyebrow: 'MÓDULO 02', title: 'PRODUTOS', highlight: 'Acessórios com produtos a partir de R$ 2,00.', description: 'Encontre opções de produtos para analisar, escolher e negociar diretamente com os fornecedores conforme suas necessidades.' },
+    { src: '/images/modulo-03-acesso-app.webp', alt: 'Módulo 03: celular com o aplicativo Meu Fornecedor aberto', label: 'Imagem do módulo 03', ratio: '1:1' as const, eyebrow: 'MÓDULO 03', title: 'ACESSO PELO APP', highlight: 'Fornecedores organizados no aplicativo.', description: 'Em vez de depender de uma lista perdida no celular, você acessa os fornecedores pelo Meu Fornecedor e consulta as opções sempre que precisar.' },
   ],
   bonusesSection: {
     title: 'E AINDA LEVE 3 BÔNUS PARA TIRAR SUA IDEIA DO PAPEL.',
