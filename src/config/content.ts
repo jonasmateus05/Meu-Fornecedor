@@ -50,12 +50,12 @@ export const pageContent = {
       title: 'NÃO É SÓ UMA LISTA DE FORNECEDORES. VEJA QUEM JÁ COMEÇOU A USAR.',
       subtitle: 'Conversas reais de pessoas encontrando fornecedores, produtos e dando os primeiros passos para começar.',
       items: [
-        { src: '', alt: 'Print de conversa real no WhatsApp com compradora do Meu Fornecedor (01)', label: 'PRINT 01: ADICIONAR IMAGEM', ratio: '1:1' as const },
-        { src: '', alt: 'Print de conversa real no WhatsApp com compradora do Meu Fornecedor (02)', label: 'PRINT 02: ADICIONAR IMAGEM', ratio: '1:1' as const },
-        { src: '', alt: 'Print de conversa real no WhatsApp com compradora do Meu Fornecedor (03)', label: 'PRINT 03: ADICIONAR IMAGEM', ratio: '1:1' as const },
-        { src: '', alt: 'Print de conversa real no WhatsApp com compradora do Meu Fornecedor (04)', label: 'PRINT 04: ADICIONAR IMAGEM', ratio: '1:1' as const },
-        { src: '', alt: 'Print de conversa real no WhatsApp com compradora do Meu Fornecedor (05)', label: 'PRINT 05: ADICIONAR IMAGEM', ratio: '1:1' as const },
-        { src: '', alt: 'Print de conversa real no WhatsApp com compradora do Meu Fornecedor (06)', label: 'PRINT 06: ADICIONAR IMAGEM', ratio: '1:1' as const },
+        { src: '/images/print-01.webp', alt: 'Print de conversa real no WhatsApp com compradora do Meu Fornecedor (01)', label: 'Print 01', ratio: '1:1' as const },
+        { src: '/images/print-02.webp', alt: 'Print de conversa real no WhatsApp com compradora do Meu Fornecedor (02)', label: 'Print 02', ratio: '1:1' as const },
+        { src: '/images/print-03.webp', alt: 'Print de conversa real no WhatsApp com compradora do Meu Fornecedor (03)', label: 'Print 03', ratio: '1:1' as const },
+        { src: '/images/print-04.webp', alt: 'Print de conversa real no WhatsApp com compradora do Meu Fornecedor (04)', label: 'Print 04', ratio: '1:1' as const },
+        { src: '/images/print-05.webp', alt: 'Print de conversa real no WhatsApp com compradora do Meu Fornecedor (05)', label: 'Print 05', ratio: '1:1' as const },
+        { src: '/images/print-06.webp', alt: 'Print de conversa real no WhatsApp com compradora do Meu Fornecedor (06)', label: 'Print 06', ratio: '1:1' as const },
       ],
     },
     authority: {
