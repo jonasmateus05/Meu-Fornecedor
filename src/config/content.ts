@@ -134,7 +134,7 @@ export const pageContent = {
       tagline: 'Só os fornecedores',
       extra: '',
       extraNote: '',
-      items: ['**21 FORNECEDORES**', 'Acesso digital vitalício'],
+      items: ['**21 FORNECEDORES**', 'Acesso vitalício pelo aplicativo'],
       previousPrice: '', beforeLabel: '', todayLabel: 'HOJE POR APENAS', installmentCount: 0, installmentValue: '', cashValue: 'R$ 9,90', paymentNote: 'Pagamento único.',
       ctaLabel: 'QUERO A OFERTA SIMPLES',
       note: '',
