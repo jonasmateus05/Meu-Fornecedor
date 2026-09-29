@@ -102,18 +102,18 @@ export const pageContent = {
   ],
   offersSection: {
     title: 'ESCOLHA COMO VOCÊ QUER COMEÇAR.',
-    paymentSecurityImage: '/images/metodos-pagamento-seguranca.svg',
-    paymentSecurityAlt: 'Métodos de pagamento e selos de compra segura, satisfação garantida e privacidade protegida',
+    paymentSecurityImage: '/images/selos-seguranca-compra.svg',
+    paymentSecurityAlt: 'Selos de compra segura, satisfação garantida e privacidade protegida',
   },
   offers: {
     // Oferta real: pagamento único, sem parcelamento e sem PIX (installmentCount = 0).
     simple: {
       eyebrow: 'OFERTA SIMPLES',
       title: 'MEU FORNECEDOR',
-      items: ['21 fornecedores de acessórios', 'Acesso vitalício pelo aplicativo'],
+      items: ['21 fornecedores de acessórios', 'Acesso digital vitalício'],
       previousPrice: 'R$ 29,90', beforeLabel: '', todayLabel: 'HOJE POR APENAS', installmentCount: 0, installmentValue: '', cashValue: 'R$ 9,90', paymentNote: 'Pagamento único.',
       ctaLabel: 'QUERO A OFERTA SIMPLES',
-      note: 'Ao escolher esta opção, você poderá receber uma condição especial para adicionar os 3 bônus.',
+      note: '',
     },
     complete: {
       badge: 'MAIS VENDIDO', eyebrow: 'OFERTA COMPLETA', title: 'MEU FORNECEDOR + 3 BÔNUS',
