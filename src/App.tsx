@@ -153,7 +153,7 @@ const FeatureList = ({ items }: { items: readonly FeatureItem[] }) => <ul classN
 
 const Subtitle = ({ text }: { text?: string | readonly string[] }) => text ? <div className="section-subtitle">{(Array.isArray(text) ? text : [text]).map(line => <p key={line}>{line}</p>)}</div> : null
 
-const printItems = pageContent.results.prints.items.filter(item => item.src)
+const printItems = pageContent.results.prints.items
 
 function App() {
   const [modalOpen, setModalOpen] = useState(false)
