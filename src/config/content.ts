@@ -59,7 +59,7 @@ export const pageContent = {
       ],
     },
     authority: {
-      title: '14 ANOS TRABALHANDO COM ACESSÓRIOS',
+      title: '',
       body: 'Antes de organizar esses fornecedores no aplicativo, essa experiência foi construída na prática, trabalhando diretamente com acessórios e revenda.',
       stats: [
         { title: '14 ANOS DE EXPERIÊNCIA NO RAMO', description: 'Experiência prática com acessórios femininos e revenda.' },
