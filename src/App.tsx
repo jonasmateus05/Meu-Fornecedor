@@ -12,6 +12,38 @@ const placeholder = (item: MediaItem, priority = false) => item.src ? (
 
 const rich = (text: string) => text.split(/\*\*(.+?)\*\*/g).map((part, i) => i % 2 ? <strong key={i}>{part}</strong> : part)
 
+// Mobile: desce até a primeira oferta, pausa e segue para a Oferta Completa. Interrompe se a pessoa rolar por conta própria.
+function scrollToOffers() {
+  const section = document.getElementById('ofertas')
+  const first = section?.querySelector<HTMLElement>('.offer-card:not(.featured)')
+  const featured = section?.querySelector<HTMLElement>('.offer-card.featured')
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  if (!first || !featured || reduceMotion || !window.matchMedia('(max-width: 767px)').matches) {
+    section?.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' })
+    return
+  }
+  let cancelled = false
+  let timer = 0
+  const cancel = () => { cancelled = true; window.clearTimeout(timer); cleanup() }
+  const cleanup = () => { window.removeEventListener('touchstart', cancel); window.removeEventListener('wheel', cancel) }
+  const afterScroll = (callback: () => void) => {
+    let done = false
+    const finish = () => { if (done) return; done = true; window.removeEventListener('scrollend', finish); callback() }
+    window.addEventListener('scrollend', finish)
+    window.setTimeout(finish, 1200)
+  }
+  first.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  afterScroll(() => {
+    if (cancelled) return
+    window.addEventListener('touchstart', cancel, { passive: true })
+    window.addEventListener('wheel', cancel, { passive: true })
+    timer = window.setTimeout(() => {
+      cleanup()
+      if (!cancelled) featured.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }, 1200)
+  })
+}
+
 function Button({ children, onClick, href, kind = 'primary' }: { children: React.ReactNode; onClick?: () => void; href?: string; kind?: 'primary' | 'secondary' | 'highlight' }) {
   const className = `button button-${kind}`
   return href ? <a className={className} href={href}>{children}</a> : <button className={className} type="button" onClick={onClick}>{children}</button>
@@ -183,7 +215,7 @@ function App() {
     <main>
       <section className="hero"><div className="container hero-inner"><div className="hero-media">{placeholder({ src: pageContent.hero.image, alt: pageContent.hero.imageAlt, label: 'Imagem da Hero', ratio: '3:2' }, true)}</div><h1>{rich(pageContent.hero.headline)}</h1><p className="lead">{rich(pageContent.hero.body)}</p>
         <div className="hero-copy">{pageContent.hero.paragraphs.map(text => <p key={text}>{text}</p>)}</div>
-        <div className="hero-action"><Button kind="highlight" onClick={() => document.getElementById('ofertas')?.scrollIntoView({ behavior: 'smooth' })}>{pageContent.hero.ctaLabel}</Button><p className="hero-price"><b>{pageContent.hero.product.price}</b> {pageContent.hero.product.note}</p><FeatureList items={pageContent.hero.checklist} /><p className="hero-note">{pageContent.hero.ctaNote}</p><img src={pageContent.hero.securityImage} alt={pageContent.hero.securityImageAlt} /></div></div></section>
+        <div className="hero-action"><Button kind="highlight" onClick={scrollToOffers}>{pageContent.hero.ctaLabel}</Button><p className="hero-price"><b>{pageContent.hero.product.price}</b> {pageContent.hero.product.note}</p><FeatureList items={pageContent.hero.checklist} /><p className="hero-note">{pageContent.hero.ctaNote}</p><img src={pageContent.hero.securityImage} alt={pageContent.hero.securityImageAlt} /></div></div></section>
       <section className="section section-muted"><div className="container"><h2 className="with-subtitle">{pageContent.results.title}</h2><Subtitle text={pageContent.results.subtitle} /><Carousel source={pageContent.results.items} />{printItems.length > 0 && <div className="prints-block">{pageContent.results.prints.title && <h3 className="prints-title">{pageContent.results.prints.title}</h3>}<Subtitle text={pageContent.results.prints.subtitle || undefined} /><Carousel source={printItems} label="Galeria de prints" className="carousel-prints" /></div>}
         <div className="authority">{pageContent.results.authority.title && <h3>{pageContent.results.authority.title}</h3>}<p className="authority-body">{rich(pageContent.results.authority.body)}</p>
           <div className="card-grid stats">{pageContent.results.authority.stats.map(stat => <article className="content-card stat-card" key={stat.title}><h3>{stat.title}</h3><p>{stat.description}</p></article>)}</div>
