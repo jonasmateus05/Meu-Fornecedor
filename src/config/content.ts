@@ -60,15 +60,15 @@ export const pageContent = {
     },
     authority: {
       title: '',
-      body: 'Antes de organizar esses fornecedores no aplicativo, essa experiência foi construída na prática, trabalhando diretamente com acessórios e revenda.',
+      body: '**Antes de organizar esses fornecedores no aplicativo, essa experiência foi construída na prática, trabalhando diretamente com acessórios e revenda.**',
       stats: [
         { title: '14 ANOS DE EXPERIÊNCIA NO RAMO', description: 'Experiência prática com acessórios femininos e revenda.' },
         { title: '21 FORNECEDORES ORGANIZADOS', description: '12 fornecedores adicionais por apenas R$\u00a010 a mais.' },
         { title: 'PRODUTOS A PARTIR DE R$\u00a02,00', description: 'Opções para quem busca começar com um investimento menor.' },
       ],
       proofs: [
-        { src: '/images/prova-loja-fisica-espaco.webp', alt: 'Loja física no início, ainda vazia, com expositores brancos, balcão de vidro e painéis canaletados', label: 'LOJA NO INÍCIO', ratio: '3:4' as const, caption: 'Loja quando tudo começou' },
-        { src: '/images/prova-experiencia-loja.webp', alt: 'Loja física hoje: interior de loja de bijuterias, folheados e semijoias, com expositores de acessórios e balcão de atendimento', label: 'LOJA HOJE', ratio: '3:4' as const, caption: 'Loja como está hoje' },
+        { src: '/images/prova-loja-fisica-espaco.webp', alt: 'Loja física no início, ainda vazia, com expositores brancos, balcão de vidro e painéis canaletados', label: 'LOJA NO INÍCIO', ratio: '3:4' as const, caption: '**Loja quando tudo começou**' },
+        { src: '/images/prova-experiencia-loja.webp', alt: 'Loja física hoje: interior de loja de bijuterias, folheados e semijoias, com expositores de acessórios e balcão de atendimento', label: 'LOJA HOJE', ratio: '3:4' as const, caption: '**Loja como está hoje**' },
       ],
     },
   },

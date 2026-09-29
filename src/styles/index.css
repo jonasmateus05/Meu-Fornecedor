@@ -30,7 +30,7 @@ h2.with-subtitle { margin-bottom:16px }.section-subtitle { max-width:760px; marg
 .price-before s { color:var(--price-strike); font-weight:700; text-decoration-thickness:2px }
 .offer-card.featured .price>span { color:var(--text-title) }
 /* Destaques de venda: peso e #1f1f1f, sem cores novas */
-h1 strong { font-weight:800 }.lead strong { color:var(--text-title); font-weight:700 }
+h1 strong { font-weight:800 }.lead strong,.authority-body strong,.proofs figcaption strong { color:var(--text-title); font-weight:700 }
 .stat-card h3,.content-card:not(.stat-card) h3 { font-weight:800 }
 .bonus-tagline { font-weight:700 }
 .feature-list strong { color:var(--text-title); font-weight:800 }
