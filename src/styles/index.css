@@ -35,6 +35,7 @@ h1 strong { font-weight:800 }.lead strong { color:var(--text-title); font-weight
 .bonus-tagline { font-weight:700 }
 .feature-list strong { color:var(--text-title); font-weight:800 }
 .bonus-value { white-space:nowrap }
+.proofs:has(>figure:only-child) { grid-template-columns:minmax(0,368px); justify-content:center }
 @media (min-width:1024px) { .hero-media { width:min(50%,520px) }.offers { align-items:start } }
 @media (max-width:1023px) { h1 { font-size:36px }.section { padding-block:80px }.card-grid { grid-template-columns:repeat(2,1fr) }.carousel { grid-auto-columns:calc((100% - 96px)/5) } }
 @media (max-width:767px) { .container { padding-inline:24px } h1 { font-size:24px; font-weight:700 } h2 { margin-bottom:32px; font-size:20px }.section { padding-block:64px }.hero { padding-block:40px 64px }.hero-media { width:100% }.card-grid,.offers { grid-template-columns:1fr }.carousel { grid-auto-columns:75%; gap:16px }.offer-card.featured { grid-row:2 }.price strong { font-size:28px }.guarantee-seal { width:min(100%,300px); margin-bottom:-48px }.guarantee h2 { margin-bottom:12px }.modal { padding:32px 24px } }
