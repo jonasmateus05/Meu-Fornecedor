@@ -12,7 +12,7 @@ export const pageContent = {
   hero: {
     image: '/images/hero-mockup-meu-fornecedor.webp',
     imageAlt: 'Mockup do aplicativo Meu Fornecedor',
-    headline: 'COMECE SUA LOJA DE R$\u00a010 ENCONTRANDO 21 FORNECEDORES DE ACESSÓRIOS A PARTIR DE R$\u00a02',
+    headline: 'COMECE SUA LOJA DE R$\u00a010 ENCONTRANDO 21 FORNECEDORES DE ACESSÓRIOS A PARTIR DE R$\u00a02,00',
     body: 'Tenha acesso a fornecedores organizados, **produtos a partir de R$2,00** e um passo a passo simples para encontrar os produtos certos para começar a vender.',
     paragraphs: [
       'Reunidos por quem trabalha há 14 anos com acessórios.',
