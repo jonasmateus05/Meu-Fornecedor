@@ -21,7 +21,7 @@ export const pageContent = {
       price: 'R$ 9,90',
       note: 'Pagamento único • Acesso vitalício pelo aplicativo',
     },
-    ctaLabel: 'QUERO ACESSAR OS FORNECEDORES',
+    ctaLabel: 'QUERO ENCONTRAR MEUS FORNECEDORES',
     checklist: [
       '21 fornecedores de acessórios',
       'Produtos a partir de R$ 2,00',
@@ -73,20 +73,19 @@ export const pageContent = {
     },
   },
   modulesSection: {
-    title: 'TUDO O QUE VOCÊ PRECISA PARA COMEÇAR SUA BUSCA POR FORNECEDORES.',
+    title: 'O QUE VOCÊ ENCONTRA NO MEU FORNECEDOR.',
     subtitle: 'Ao confirmar seu acesso, você entra no Meu Fornecedor e encontra fornecedores de acessórios organizados para consultar quando precisar.',
     accordionLabel: 'Clique aqui para ver descrição',
   },
   modules: [
-    { src: '/images/modulo-01-fornecedores.webp', alt: 'Módulo 01: telas do aplicativo com a lista de fornecedores e as categorias', label: 'Imagem do módulo 01', ratio: '1:1' as const, eyebrow: 'MÓDULO 01', title: 'FORNECEDORES ORGANIZADOS', highlight: '21 fornecedores na Oferta Simples e 33 na Oferta Completa. Você poderia passar horas procurando fornecedor por fornecedor. Aqui, eles já estão organizados em um só lugar.', description: 'Uma seleção de fornecedores reunidos para quem quer começar a vender acessórios ou encontrar novas opções para abastecer sua loja.', listTitle: 'Em cada fornecedor você encontra:', list: ['Categoria', 'WhatsApp ou contato', 'Instagram ou site', 'Pedido mínimo', 'Preço inicial dos produtos', 'Envio e região atendida'], list2Title: 'Tipos de fornecedores na lista:', list2: ['Fornecedores de semijoias', 'Fornecedores de bijuterias', 'Fornecedores de folheados', 'Fornecedores de joias em aço inox', 'Fornecedores de prata 925', 'Fornecedores de acessórios de cabelo', 'Fornecedores com produtos a partir de R$\u00a02,99', 'Fornecedores que atendem sem CNPJ'] },
-    { src: '/images/modulo-02-produtos.webp', alt: 'Módulo 02: telas do aplicativo com o catálogo de produtos por categoria', label: 'Imagem do módulo 02', ratio: '1:1' as const, eyebrow: 'MÓDULO 02', title: 'PRODUTOS PARA REVENDER', highlight: 'Veja opções de acessórios e encontre produtos com preços baixos para começar seu estoque.', description: 'Encontre opções de produtos para analisar, escolher e negociar diretamente com os fornecedores conforme suas necessidades.' },
-    { src: '/images/modulo-03-acesso-app.webp', alt: 'Módulo 03: celular com o aplicativo Meu Fornecedor aberto', label: 'Imagem do módulo 03', ratio: '1:1' as const, eyebrow: 'MÓDULO 03', title: 'ACESSO PELO APP', highlight: 'Consulte os fornecedores pelo celular sempre que precisar.', description: 'Em vez de depender de uma lista perdida no celular, você acessa os fornecedores pelo Meu Fornecedor e consulta as opções sempre que precisar.' },
+    { src: '/images/modulo-01-fornecedores.webp', alt: 'Telas do aplicativo com a lista de fornecedores e as categorias', label: 'Imagem: fornecedores organizados', ratio: '1:1' as const, eyebrow: '', title: '1. FORNECEDORES ORGANIZADOS', highlight: '21 fornecedores na Oferta Simples e 33 na Oferta Completa. Você poderia passar horas procurando fornecedor por fornecedor. Aqui, eles já estão organizados em um só lugar.', description: 'Uma seleção de fornecedores reunidos para quem quer começar a vender acessórios ou encontrar novas opções para abastecer sua loja.', listTitle: 'Em cada fornecedor você encontra:', list: ['Categoria', 'WhatsApp ou contato', 'Instagram ou site', 'Pedido mínimo', 'Preço inicial dos produtos', 'Envio e região atendida'], list2Title: 'Tipos de fornecedores na lista:', list2: ['Fornecedores de semijoias', 'Fornecedores de bijuterias', 'Fornecedores de folheados', 'Fornecedores de joias em aço inox', 'Fornecedores de prata 925', 'Fornecedores de acessórios de cabelo', 'Fornecedores com produtos a partir de R$\u00a02,99', 'Fornecedores que atendem sem CNPJ'] },
+    { src: '/images/modulo-02-produtos.webp', alt: 'Telas do aplicativo com o catálogo de produtos por categoria', label: 'Imagem: categorias e produtos', ratio: '1:1' as const, eyebrow: '', title: '2. CATEGORIAS E PRODUTOS', highlight: 'Veja opções de acessórios e encontre produtos com preços baixos para começar seu estoque.', description: 'Encontre opções de produtos para analisar, escolher e negociar diretamente com os fornecedores conforme suas necessidades.' },
+    { src: '/images/modulo-03-acesso-app.webp', alt: 'Celular com o aplicativo Meu Fornecedor aberto', label: 'Imagem: acesso pelo aplicativo', ratio: '1:1' as const, eyebrow: '', title: '3. ACESSO PELO APLICATIVO', highlight: 'Consulte os fornecedores pelo celular sempre que precisar.', description: 'Em vez de depender de uma lista perdida no celular, você acessa os fornecedores pelo Meu Fornecedor e consulta as opções sempre que precisar.' },
   ],
   bonusesSection: {
     title: 'E AINDA LEVE 3 BÔNUS PARA TIRAR SUA IDEIA DO PAPEL.',
     subtitle: [
-      'Você não recebe apenas os fornecedores.',
-      'Na Oferta Completa, você também recebe materiais para escolher seus primeiros produtos, calcular preços e começar a divulgar sua loja.',
+      'Você já terá os fornecedores. Agora, esses 3 bônus ajudam a transformar a pesquisa em ação.',
     ],
     journey: [
       { step: '1. ENCONTRE', text: 'os fornecedores' },
@@ -144,11 +143,10 @@ export const pageContent = {
       badge: 'PARA QUEM QUER COMEÇAR COMPLETO', eyebrow: 'OFERTA COMPLETA', title: 'MEU FORNECEDOR +\u00a03\u00a0BÔNUS',
       tagline: 'Fornecedores + tudo para começar',
       extra: 'POR APENAS R$\u00a010 A MAIS',
-      extraNote: 'Você recebe 12 fornecedores adicionais + os 3 bônus para começar.',
+      extraNote: 'Você leva **12 fornecedores adicionais + R$\u00a074,70 em bônus.**',
       items: [
         { label: '**33 FORNECEDORES ORGANIZADOS**' },
         { label: '**12 FORNECEDORES A MAIS QUE A OFERTA SIMPLES**' },
-        { label: '**ATUALIZAÇÕES CONSTANTES DE FORNECEDORES**' },
         { label: 'Acesso vitalício pelo aplicativo' },
         { label: '**3 BÔNUS INCLUSOS**' },
         { label: 'Guia “Comece sua Loja de R$\u00a010”', value: 'R$ 29,90' },
@@ -156,7 +154,7 @@ export const pageContent = {
         { label: 'Kit de Divulgação', value: 'R$ 24,90' },
       ],
       previousPrice: '', beforeLabel: 'VALOR DOS BÔNUS: R$ 74,70', todayLabel: 'HOJE POR APENAS', installmentCount: 0, installmentValue: '', cashValue: 'R$ 19,90', paymentNote: 'Pagamento único.',
-      ctaLabel: 'QUERO A OFERTA COMPLETA',
+      ctaLabel: 'QUERO COMEÇAR COM 33 FORNECEDORES',
       note: '',
     },
     popup: {
@@ -177,7 +175,7 @@ export const pageContent = {
     days: 7,
     title: '7 DIAS PARA TESTAR SEM RISCO',
     body: [
-      'Acesse o material, conheça os fornecedores e veja se a lista faz sentido para você. Se dentro de 7 dias você entender que não é o que esperava, solicite seu reembolso conforme as condições da garantia.',
+      'Você pode acessar, conhecer o material e decidir se faz sentido para você. Se não fizer, solicite o reembolso dentro de 7 dias.',
     ],
     highlightTitle: '7 DIAS DE GARANTIA',
     highlightText: '100% do seu dinheiro de volta dentro do prazo de garantia.',
@@ -188,6 +186,7 @@ export const pageContent = {
     { question: 'OS FORNECEDORES VENDEM ONLINE?', answer: 'Sim. A proposta da lista é reunir fornecedores que atendem online, permitindo que você entre em contato e faça suas compras diretamente com cada fornecedor.' },
     { question: 'OS FORNECEDORES ENVIAM PARA TODO O BRASIL?', answer: 'A lista foi criada para facilitar o acesso a fornecedores que vendem online e realizam envios para diferentes regiões do Brasil. As condições de envio, pedido mínimo e valores são definidos individualmente por cada fornecedor.' },
     { question: 'QUANTOS FORNECEDORES EU VOU ENCONTRAR?', answer: 'A Oferta Simples reúne 21 fornecedores de bijuterias, semijoias e acessórios femininos, organizados no aplicativo. A Oferta Completa reúne 33 fornecedores (os 21 da Simples + 12 adicionais) e inclui os 3 bônus.' },
+    { question: 'EU PRECISO TER EXPERIÊNCIA PARA COMEÇAR?', answer: 'Não. O Meu Fornecedor foi pensado para quem quer começar: os fornecedores já estão organizados por categoria, com contato, pedido mínimo e preço inicial dos produtos. Na Oferta Completa, os bônus ajudam você a escolher os primeiros produtos, calcular o preço de venda e divulgar sua loja.' },
     { question: 'EU TENHO SUPORTE SE PRECISAR DE AJUDA?', answer: 'Sim. O produto conta com suporte pelo WhatsApp para auxiliar você com questões relacionadas ao acesso ao material.' },
   ],
   footer: { brand: 'Meu Fornecedor', copyright: '© 2026 Meu Fornecedor' },
