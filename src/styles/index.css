@@ -52,3 +52,5 @@ h1 strong { font-weight:800 }.lead strong { color:var(--text-title); font-weight
 .offer-card.featured { color:var(--text-title) }.offer-card.featured .bonus-value { padding:0 4px; border-radius:4px; background:var(--background-white) }
 .guarantee>div>p { margin-bottom:8px }
 @media (max-width:767px) { .offer-badge { padding:8px 12px; font-size:min(16px,3.6vw) } }
+.prints-block { margin-top:56px }.prints-title { max-width:760px; margin:0 auto 12px; color:var(--text-title); font-size:24px; font-weight:800; line-height:1.25; text-align:center }.carousel.carousel-prints { grid-auto-columns:calc((100% - 72px)/4) }.carousel-prints .result-card { aspect-ratio:1/1; border:1px solid var(--border-soft) }
+@media (max-width:767px) { .prints-block { margin-top:40px }.prints-title { font-size:20px }.carousel.carousel-prints { grid-auto-columns:80% } }

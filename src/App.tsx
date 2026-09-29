@@ -59,9 +59,9 @@ function Price({ data }: { data: PriceData }) {
   </div>
 }
 
-function Carousel() {
+function Carousel({ source, label = 'Galeria de resultados', className = '' }: { source: readonly MediaItem[]; label?: string; className?: string }) {
   const ref = useRef<HTMLDivElement>(null)
-  const items = [...pageContent.results.items, ...pageContent.results.items, ...pageContent.results.items]
+  const items = [...source, ...source, ...source]
   const segmentWidth = () => (ref.current?.scrollWidth ?? 0) / 3
 
   useEffect(() => {
@@ -93,8 +93,8 @@ function Carousel() {
   }, [])
 
   return <div className="carousel-wrap">
-    <div className="carousel" ref={ref} aria-label="Galeria de resultados">
-      {items.map((item, index) => <article className="result-card" aria-hidden={index < pageContent.results.items.length || index >= pageContent.results.items.length * 2} key={index}>{placeholder(item)}</article>)}
+    <div className={`carousel ${className}`.trim()} ref={ref} aria-label={label}>
+      {items.map((item, index) => <article className="result-card" aria-hidden={index < source.length || index >= source.length * 2} key={index}>{placeholder(item)}</article>)}
     </div>
   </div>
 }
@@ -153,6 +153,8 @@ const FeatureList = ({ items }: { items: readonly FeatureItem[] }) => <ul classN
 
 const Subtitle = ({ text }: { text?: string | readonly string[] }) => text ? <div className="section-subtitle">{(Array.isArray(text) ? text : [text]).map(line => <p key={line}>{line}</p>)}</div> : null
 
+const printItems = pageContent.results.prints.items.filter(item => item.src)
+
 function App() {
   const [modalOpen, setModalOpen] = useState(false)
   const [faqOpen, setFaqOpen] = useState<number | null>(0)
@@ -182,7 +184,7 @@ function App() {
       <section className="hero"><div className="container hero-inner"><div className="hero-media">{placeholder({ src: pageContent.hero.image, alt: pageContent.hero.imageAlt, label: 'Imagem da Hero', ratio: '3:2' }, true)}</div><h1>{rich(pageContent.hero.headline)}</h1><p className="lead">{rich(pageContent.hero.body)}</p>
         <div className="hero-copy">{pageContent.hero.paragraphs.map(text => <p key={text}>{text}</p>)}</div>
         <div className="hero-action"><Button onClick={() => document.getElementById('ofertas')?.scrollIntoView({ behavior: 'smooth' })}>{pageContent.hero.ctaLabel}</Button><p className="hero-price"><b>{pageContent.hero.product.price}</b> {pageContent.hero.product.note}</p><FeatureList items={pageContent.hero.checklist} /><p className="hero-note">{pageContent.hero.ctaNote}</p><img src={pageContent.hero.securityImage} alt={pageContent.hero.securityImageAlt} /></div></div></section>
-      <section className="section section-muted"><div className="container"><h2 className="with-subtitle">{pageContent.results.title}</h2><Subtitle text={pageContent.results.subtitle} /><Carousel />
+      <section className="section section-muted"><div className="container"><h2 className="with-subtitle">{pageContent.results.title}</h2><Subtitle text={pageContent.results.subtitle} /><Carousel source={pageContent.results.items} />{printItems.length > 0 && <div className="prints-block">{pageContent.results.prints.title && <h3 className="prints-title">{pageContent.results.prints.title}</h3>}<Subtitle text={pageContent.results.prints.subtitle || undefined} /><Carousel source={printItems} label="Galeria de prints" className="carousel-prints" /></div>}
         <div className="authority"><h3>{pageContent.results.authority.title}</h3><p className="authority-body">{pageContent.results.authority.body}</p>
           <div className="card-grid stats">{pageContent.results.authority.stats.map(stat => <article className="content-card stat-card" key={stat.title}><h3>{stat.title}</h3><p>{stat.description}</p></article>)}</div>
           <div className="proofs">{pageContent.results.authority.proofs.map(proof => <figure key={proof.label}><div className="proof-media">{placeholder(proof)}</div><figcaption>{proof.caption}</figcaption></figure>)}</div>

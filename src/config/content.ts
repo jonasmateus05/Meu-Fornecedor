@@ -44,6 +44,20 @@ export const pageContent = {
       { src: '/images/produto-05-brinco-coracao-loja.webp', alt: 'Brinco dourado em formato de coração, exposto em loja de fornecedor', label: 'Produto de fornecedor disponível na lista', ratio: '2:3' as const },
       { src: '/images/produto-06-catalogo-brincos.webp', alt: 'Catálogo de fornecedor com brincos dourados de argola, laço e leque', label: 'Produto de fornecedor disponível na lista', ratio: '2:3' as const },
     ],
+    // Campos para prints de WhatsApp. Para ativar: suba o arquivo em public/images/ e preencha o src,
+    // (caminho começando com /images/ + nome do arquivo). O bloco só aparece quando pelo menos um src estiver preenchido.
+    prints: {
+      title: '',
+      subtitle: '',
+      items: [
+        { src: '', alt: 'Print de conversa 01', label: 'Print 01', ratio: '1:1' as const },
+        { src: '', alt: 'Print de conversa 02', label: 'Print 02', ratio: '1:1' as const },
+        { src: '', alt: 'Print de conversa 03', label: 'Print 03', ratio: '1:1' as const },
+        { src: '', alt: 'Print de conversa 04', label: 'Print 04', ratio: '1:1' as const },
+        { src: '', alt: 'Print de conversa 05', label: 'Print 05', ratio: '1:1' as const },
+        { src: '', alt: 'Print de conversa 06', label: 'Print 06', ratio: '1:1' as const },
+      ],
+    },
     authority: {
       title: 'EXPERIÊNCIA REAL. FORNECEDORES ORGANIZADOS. TUDO EM UM SÓ LUGAR.',
       body: 'O Meu Fornecedor nasceu da experiência de quem já trabalha com acessórios e conhece esse mercado há 14 anos.',
