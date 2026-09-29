@@ -176,7 +176,7 @@ function App() {
       if (!canonical) { canonical = document.createElement('link'); canonical.rel = 'canonical'; document.head.append(canonical) }
       canonical.href = seo.canonical
     }
-    Object.entries({ '--brand-primary': theme.brand.primary, '--brand-primary-dark': theme.brand.primaryDark, '--brand-primary-light': theme.brand.primaryLight, '--cta-color': theme.cta.color, '--cta-dark': theme.cta.dark, '--cta-light': theme.cta.light }).forEach(([key, value]) => document.documentElement.style.setProperty(key, value))
+    Object.entries({ '--brand-primary': theme.brand.primary, '--brand-primary-dark': theme.brand.primaryDark, '--brand-primary-light': theme.brand.primaryLight, '--cta-color': theme.cta.color, '--cta-dark': theme.cta.dark, '--cta-light': theme.cta.light, '--background-section': theme.background.section, '--background-card-featured': theme.background.cardFeatured, '--background-card-light': theme.background.cardLight }).forEach(([key, value]) => document.documentElement.style.setProperty(key, value))
   }, [])
   return <>
     <UrgencyBar />
