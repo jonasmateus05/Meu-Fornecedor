@@ -51,3 +51,4 @@ h1 strong { font-weight:800 }.lead strong { color:var(--text-title); font-weight
 /* Contraste no card destacado (#c7c7c7): textos em --text-title; valores riscados em vermelho sobre base branca (#e12121 sobre #fff = 4,7:1) */
 .offer-card.featured { color:var(--text-title) }.offer-card.featured .bonus-value { padding:0 4px; border-radius:4px; background:var(--background-white) }
 .guarantee>div>p { margin-bottom:8px }
+@media (max-width:767px) { .offer-badge { padding:8px 12px; font-size:min(16px,3.6vw) } }

@@ -63,7 +63,7 @@ export const pageContent = {
     accordionLabel: 'Clique aqui para ver descrição',
   },
   modules: [
-    { src: '/images/modulo-01-fornecedores.webp', alt: 'Módulo 01: telas do aplicativo com a lista de fornecedores e as categorias', label: 'Imagem do módulo 01', ratio: '1:1' as const, eyebrow: 'MÓDULO 01', title: 'FORNECEDORES ORGANIZADOS', highlight: '21 fornecedores na Oferta Simples e 33 na Oferta Completa. Encontre rapidamente onde comprar seus acessórios sem precisar pesquisar fornecedor por fornecedor.', description: 'Uma seleção de fornecedores reunidos para quem quer começar a vender acessórios ou encontrar novas opções para abastecer sua loja.', listTitle: 'O que você encontra na lista:', list: ['Fornecedores de semijoias', 'Fornecedores de bijuterias', 'Fornecedores de folheados', 'Fornecedores de joias em aço inox', 'Fornecedores de prata 925', 'Fornecedores de acessórios de cabelo', 'Fornecedores com produtos a partir de R$\u00a02,99', 'Fornecedores que atendem sem CNPJ'] },
+    { src: '/images/modulo-01-fornecedores.webp', alt: 'Módulo 01: telas do aplicativo com a lista de fornecedores e as categorias', label: 'Imagem do módulo 01', ratio: '1:1' as const, eyebrow: 'MÓDULO 01', title: 'FORNECEDORES ORGANIZADOS', highlight: '21 fornecedores na Oferta Simples e 33 na Oferta Completa. Você poderia passar horas procurando fornecedor por fornecedor. Aqui, eles já estão organizados em um só lugar.', description: 'Uma seleção de fornecedores reunidos para quem quer começar a vender acessórios ou encontrar novas opções para abastecer sua loja.', listTitle: 'Em cada fornecedor você encontra:', list: ['Categoria', 'WhatsApp ou contato', 'Instagram ou site', 'Pedido mínimo', 'Preço inicial dos produtos', 'Envio e região atendida'], list2Title: 'Tipos de fornecedores na lista:', list2: ['Fornecedores de semijoias', 'Fornecedores de bijuterias', 'Fornecedores de folheados', 'Fornecedores de joias em aço inox', 'Fornecedores de prata 925', 'Fornecedores de acessórios de cabelo', 'Fornecedores com produtos a partir de R$\u00a02,99', 'Fornecedores que atendem sem CNPJ'] },
     { src: '/images/modulo-02-produtos.webp', alt: 'Módulo 02: telas do aplicativo com o catálogo de produtos por categoria', label: 'Imagem do módulo 02', ratio: '1:1' as const, eyebrow: 'MÓDULO 02', title: 'PRODUTOS PARA REVENDER', highlight: 'Veja opções de acessórios e encontre produtos com preços baixos para começar seu estoque.', description: 'Encontre opções de produtos para analisar, escolher e negociar diretamente com os fornecedores conforme suas necessidades.' },
     { src: '/images/modulo-03-acesso-app.webp', alt: 'Módulo 03: celular com o aplicativo Meu Fornecedor aberto', label: 'Imagem do módulo 03', ratio: '1:1' as const, eyebrow: 'MÓDULO 03', title: 'ACESSO PELO APP', highlight: 'Consulte os fornecedores pelo celular sempre que precisar.', description: 'Em vez de depender de uma lista perdida no celular, você acessa os fornecedores pelo Meu Fornecedor e consulta as opções sempre que precisar.' },
   ],
@@ -108,6 +108,7 @@ export const pageContent = {
   ],
   offersSection: {
     title: 'ESCOLHA COMO VOCÊ QUER COMEÇAR.',
+    subtitle: 'Você poderia gastar horas procurando fornecedores por conta própria. Aqui, eles já estão organizados para você.',
     paymentSecurityImage: '/images/selos-seguranca-compra.svg',
     paymentSecurityAlt: 'Selos de compra segura, satisfação garantida e privacidade protegida',
   },
@@ -120,12 +121,12 @@ export const pageContent = {
       extra: '',
       extraNote: '',
       items: ['**21 FORNECEDORES**', 'Acesso digital vitalício'],
-      previousPrice: 'R$ 29,90', beforeLabel: '', todayLabel: 'HOJE POR APENAS', installmentCount: 0, installmentValue: '', cashValue: 'R$ 9,90', paymentNote: 'Pagamento único.',
+      previousPrice: '', beforeLabel: '', todayLabel: 'HOJE POR APENAS', installmentCount: 0, installmentValue: '', cashValue: 'R$ 9,90', paymentNote: 'Pagamento único.',
       ctaLabel: 'QUERO A OFERTA SIMPLES',
       note: '',
     },
     complete: {
-      badge: 'MAIS VENDIDO', eyebrow: 'OFERTA COMPLETA', title: 'MEU FORNECEDOR +\u00a03\u00a0BÔNUS',
+      badge: 'PARA QUEM QUER COMEÇAR COMPLETO', eyebrow: 'OFERTA COMPLETA', title: 'MEU FORNECEDOR +\u00a03\u00a0BÔNUS',
       tagline: 'Fornecedores + tudo para começar',
       extra: 'POR APENAS R$\u00a010 A MAIS',
       extraNote: 'Você recebe 12 fornecedores adicionais + os 3 bônus para começar.',
