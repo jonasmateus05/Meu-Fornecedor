@@ -18,6 +18,12 @@
 - Link de suporte (WhatsApp), termos e privacidade; Meta Pixel; SEO (og:image, canonical, favicon).
 - Decisões de conversão em aberto: headline, posição do CTA no mobile, autoridade com rosto/foto, pausa do carrossel.
 
+
+## Performance (29/09/2026)
+- Imagens redimensionadas para o tamanho de exibição (WebP q80): hero 1200px, carrossel 700px, provas 800px, módulos/bônus 900px. Total 3,4 MB → 1,3 MB.
+- Ao trocar uma imagem, manter essas larguras (a conversão automática da matriz não redimensiona).
+- `index.html` pré-carrega o mockup da hero (`rel="preload"`).
+
 ---
 # Referência original da matriz
 

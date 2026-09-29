@@ -9,7 +9,7 @@ export const pageContent = {
     text: '',
   },
   hero: {
-    image: '',
+    image: '/images/hero-mockup-meu-fornecedor.webp',
     imageAlt: 'Mockup do aplicativo Meu Fornecedor',
     headline: 'SUA LOJA DE R$ 10 PODE COMEÇAR COM OS FORNECEDORES CERTOS.',
     body: 'Encontre fornecedores de bijuterias, semijoias e acessórios femininos com produtos a partir de R$ 2,00 — organizados em um aplicativo para você começar sua busca imediatamente.',
