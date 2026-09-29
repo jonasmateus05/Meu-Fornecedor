@@ -179,7 +179,6 @@ function App() {
     <main>
       <section className="hero"><div className="container hero-inner"><div className="hero-media">{placeholder({ src: pageContent.hero.image, alt: pageContent.hero.imageAlt, label: 'Imagem da Hero', ratio: '3:2' }, true)}</div><h1>{pageContent.hero.headline}</h1><p className="lead">{pageContent.hero.body}</p>
         <div className="hero-copy">{pageContent.hero.paragraphs.map(text => <p key={text}>{text}</p>)}</div>
-        <div className="hero-product"><strong>{pageContent.hero.product.name}</strong><p>{pageContent.hero.product.description}</p></div>
         <div className="hero-action"><Button onClick={() => document.getElementById('ofertas')?.scrollIntoView({ behavior: 'smooth' })}>{pageContent.hero.ctaLabel}</Button><p className="hero-price"><b>{pageContent.hero.product.price}</b> {pageContent.hero.product.note}</p><FeatureList items={pageContent.hero.checklist} /><p className="hero-note">{pageContent.hero.ctaNote}</p><img src={pageContent.hero.securityImage} alt={pageContent.hero.securityImageAlt} /></div></div></section>
       <section className="section section-muted"><div className="container"><h2 className="with-subtitle">{pageContent.results.title}</h2><Subtitle text={pageContent.results.subtitle} /><Carousel />
         <div className="authority"><h3>{pageContent.results.authority.title}</h3><p className="authority-body">{pageContent.results.authority.body}</p>

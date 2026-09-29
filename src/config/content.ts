@@ -11,16 +11,12 @@ export const pageContent = {
   hero: {
     image: '/images/hero-mockup-meu-fornecedor.webp',
     imageAlt: 'Mockup do aplicativo Meu Fornecedor',
-    headline: 'SUA LOJA DE R$ 10 PODE COMEÇAR COM OS FORNECEDORES CERTOS.',
-    body: 'Encontre fornecedores de bijuterias, semijoias e acessórios femininos com produtos a partir de R$ 2,00 — organizados em um aplicativo para você começar sua busca imediatamente.',
+    headline: 'ENCONTRE FORNECEDORES DE ACESSÓRIOS PARA COMEÇAR SUA LOJA COM PRODUTOS A PARTIR DE R$ 2,00',
+    body: '21 fornecedores organizados em um aplicativo para você encontrar onde comprar bijuterias, semijoias e acessórios femininos.',
     paragraphs: [
-      'Depois de 14 anos trabalhando com acessórios, reunimos fornecedores que conhecemos e organizamos tudo em um único lugar.',
-      'Você não precisa passar horas procurando fornecedores aleatórios na internet.',
-      'Você recebe acesso imediato ao Meu Fornecedor e começa sua busca pelos fornecedores da lista.',
+      'Reunidos por quem trabalha há 14 anos com acessórios.',
     ],
     product: {
-      name: 'MEU FORNECEDOR',
-      description: 'Lista de fornecedores de bijuterias, semijoias e acessórios femininos.',
       price: 'R$ 9,90',
       note: 'Pagamento único • Acesso vitalício pelo aplicativo',
     },
@@ -29,7 +25,6 @@ export const pageContent = {
       '21 fornecedores de acessórios',
       'Produtos a partir de R$ 2,00',
       'Fornecedores que vendem online',
-      'Fornecedores que enviam para diferentes regiões do Brasil',
       'Acesso imediato pelo aplicativo',
     ],
     ctaNote: 'Pagamento seguro • Acesso vitalício',
@@ -117,7 +112,7 @@ export const pageContent = {
       title: 'MEU FORNECEDOR',
       items: ['21 fornecedores de acessórios', 'Acesso vitalício pelo aplicativo'],
       previousPrice: 'R$ 29,90', beforeLabel: '', todayLabel: 'HOJE POR APENAS', installmentCount: 0, installmentValue: '', cashValue: 'R$ 9,90', paymentNote: 'Pagamento único.',
-      ctaLabel: 'OFERTA SIMPLES',
+      ctaLabel: 'QUERO A OFERTA SIMPLES',
       note: 'Ao escolher esta opção, você poderá receber uma condição especial para adicionar os 3 bônus.',
     },
     complete: {
@@ -130,7 +125,7 @@ export const pageContent = {
         { label: 'Kit de Divulgação', value: 'R$ 24,90' },
       ],
       previousPrice: '', beforeLabel: 'VALOR DOS BÔNUS: R$ 74,70', todayLabel: 'HOJE POR APENAS', installmentCount: 0, installmentValue: '', cashValue: 'R$ 19,90', paymentNote: 'Pagamento único.',
-      ctaLabel: 'OFERTA COMPLETA',
+      ctaLabel: 'QUERO A OFERTA COMPLETA',
       note: '',
     },
     popup: {
