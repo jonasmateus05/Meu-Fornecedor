@@ -111,17 +111,19 @@ export const pageContent = {
     simple: {
       eyebrow: 'OFERTA SIMPLES',
       title: 'MEU FORNECEDOR',
-      items: ['21 fornecedores de acessórios', 'Acesso digital vitalício'],
+      items: ['**10 FORNECEDORES**', 'Acesso digital vitalício'],
       previousPrice: 'R$ 29,90', beforeLabel: '', todayLabel: 'HOJE POR APENAS', installmentCount: 0, installmentValue: '', cashValue: 'R$ 9,90', paymentNote: 'Pagamento único.',
       ctaLabel: 'QUERO A OFERTA SIMPLES',
       note: '',
     },
     complete: {
-      badge: 'MAIS VENDIDO', eyebrow: 'OFERTA COMPLETA', title: 'MEU FORNECEDOR + 3 BÔNUS',
+      badge: 'MAIS VENDIDO', eyebrow: 'OFERTA COMPLETA', title: 'MEU FORNECEDOR +\u00a03\u00a0BÔNUS',
       items: [
-        { label: '21 fornecedores de acessórios' },
+        { label: '**MAIS DE 20 FORNECEDORES**' },
+        { label: '**ATUALIZAÇÕES CONSTANTES DE FORNECEDORES**' },
         { label: 'Acesso vitalício pelo aplicativo' },
-        { label: 'Guia “Comece sua Loja de R$ 10”', value: 'R$ 29,90' },
+        { label: '**3 BÔNUS INCLUSOS**' },
+        { label: 'Guia “Comece sua Loja de R$\u00a010”', value: 'R$ 29,90' },
         { label: 'Calculadora de Preço de Venda', value: 'R$ 19,90' },
         { label: 'Kit de Divulgação', value: 'R$ 24,90' },
       ],

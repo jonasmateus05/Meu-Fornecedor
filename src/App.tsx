@@ -148,7 +148,7 @@ type FeatureItem = string | { label: string; value?: string }
 const FeatureList = ({ items }: { items: readonly FeatureItem[] }) => <ul className="feature-list">{items.map(item => {
   const label = typeof item === 'string' ? item : item.label
   const value = typeof item === 'string' ? '' : item.value
-  return <li key={label}><Check aria-hidden="true" /><span>{label}{value && <> <s className="bonus-value">{value}</s></>}</span></li>
+  return <li key={label}><Check aria-hidden="true" /><span>{rich(label)}{value && <> <s className="bonus-value">{value}</s></>}</span></li>
 })}</ul>
 
 const Subtitle = ({ text }: { text?: string | readonly string[] }) => text ? <div className="section-subtitle">{(Array.isArray(text) ? text : [text]).map(line => <p key={line}>{line}</p>)}</div> : null
