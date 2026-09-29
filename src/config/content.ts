@@ -12,7 +12,7 @@ export const pageContent = {
   hero: {
     image: '/images/hero-mockup-meu-fornecedor.webp',
     imageAlt: 'Mockup do aplicativo Meu Fornecedor',
-    headline: 'DESCUBRA 21 FORNECEDORES DE ACESSÓRIOS PARA COMEÇAR SUA LOJA **SEM PERDER HORAS PROCURANDO ONDE COMPRAR**',
+    headline: 'COMECE SUA LOJA DE R$\u00a010 ENCONTRANDO 21 FORNECEDORES DE ACESSÓRIOS A PARTIR DE R$\u00a02',
     body: 'Tenha acesso a fornecedores organizados, **produtos a partir de R$2,00** e um passo a passo simples para encontrar os produtos certos para começar a vender.',
     paragraphs: [
       'Reunidos por quem trabalha há 14 anos com acessórios.',
@@ -48,7 +48,7 @@ export const pageContent = {
     // (caminho começando com /images/ + nome do arquivo). Campo com src vazio aparece como espaço reservado (1200 × 1200).
     prints: {
       title: 'NÃO É SÓ UMA LISTA DE FORNECEDORES. VEJA QUEM JÁ COMEÇOU A USAR.',
-      subtitle: 'Conversas reais de pessoas encontrando fornecedores, produtos e dando os primeiros passos para começar.',
+      subtitle: '',
       items: [
         { src: '/images/print-01.webp', alt: 'Print de conversa real no WhatsApp com compradora do Meu Fornecedor (01)', label: 'Print 01', ratio: '1:1' as const },
         { src: '/images/print-02.webp', alt: 'Print de conversa real no WhatsApp com compradora do Meu Fornecedor (02)', label: 'Print 02', ratio: '1:1' as const },
@@ -59,15 +59,16 @@ export const pageContent = {
       ],
     },
     authority: {
-      title: 'EXPERIÊNCIA REAL. FORNECEDORES ORGANIZADOS. TUDO EM UM SÓ LUGAR.',
-      body: 'O Meu Fornecedor nasceu da experiência de quem já trabalha com acessórios e conhece esse mercado há 14 anos.',
+      title: '14 ANOS TRABALHANDO COM ACESSÓRIOS',
+      body: 'Antes de organizar esses fornecedores no aplicativo, essa experiência foi construída na prática, trabalhando diretamente com acessórios e revenda.',
       stats: [
         { title: '14 ANOS DE EXPERIÊNCIA NO RAMO', description: 'Experiência prática com acessórios femininos e revenda.' },
-        { title: '21 FORNECEDORES ORGANIZADOS', description: '21 na Oferta Simples e 33 na Oferta Completa: semijoias, bijuterias, folheados, aço inox, prata 925 e acessórios de cabelo.' },
+        { title: '21 FORNECEDORES ORGANIZADOS', description: '12 fornecedores adicionais por apenas R$\u00a010 a mais.' },
         { title: 'PRODUTOS A PARTIR DE R$\u00a02,00', description: 'Opções para quem busca começar com um investimento menor.' },
       ],
       proofs: [
         { src: '/images/prova-experiencia-loja.webp', alt: 'Interior de loja física de bijuterias, folheados e semijoias, com expositores de acessórios e balcão de atendimento', label: 'PROVA DE EXPERIÊNCIA', ratio: '3:4' as const, caption: 'Experiência real no mercado de acessórios' },
+        { src: '/images/prova-loja-fisica-espaco.webp', alt: 'Interior da loja física com expositores brancos, balcão de vidro e painéis canaletados', label: 'PROVA DA LOJA FÍSICA', ratio: '3:4' as const, caption: 'Espaço da loja física de acessórios' },
       ],
     },
   },
