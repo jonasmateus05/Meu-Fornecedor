@@ -3,7 +3,7 @@ import { Check, Minus, Plus, X } from 'lucide-react'
 import { pageContent, type MediaItem } from './config/content'
 import { links } from './config/links'
 import { seo } from './config/seo'
-import { theme } from './config/theme'
+import { themeVariables } from './utils/theme'
 import { withAttributionParams } from './utils/attribution'
 
 const placeholder = (item: MediaItem, priority = false) => item.src ? (
@@ -47,7 +47,8 @@ function scrollToOffers() {
 
 function Button({ children, onClick, href, kind = 'primary' }: { children: React.ReactNode; onClick?: () => void; href?: string; kind?: 'primary' | 'secondary' | 'highlight' }) {
   const className = `button button-${kind}`
-  return href ? <a className={className} href={href}>{children}</a> : <button className={className} type="button" onClick={onClick}>{children}</button>
+  // Os parâmetros de UTM são somados no clique, para funcionar com o HTML pré-renderizado.
+  return href ? <a className={className} href={href} onPointerDown={event => { event.currentTarget.href = withAttributionParams(href) }} onClick={event => { event.currentTarget.href = withAttributionParams(href) }}>{children}</a> : <button className={className} type="button" onClick={onClick}>{children}</button>
 }
 
 function UrgencyBar() {
@@ -95,6 +96,8 @@ function Price({ data }: { data: PriceData }) {
 function Carousel({ source, label = 'Galeria de resultados', className = '' }: { source: readonly MediaItem[]; label?: string; className?: string }) {
   const ref = useRef<HTMLDivElement>(null)
   const [paused, setPaused] = useState(false)
+  // Fotos só entram depois que a página fica interativa: no HTML pré-renderizado elas disputariam banda com a imagem do Hero.
+  const [ready, setReady] = useState(false)
   const items = [...source, ...source, ...source]
 
   // Autoplay por animação CSS (transform nos cards): roda no compositor do navegador, sem depender de scrollLeft,
@@ -113,6 +116,7 @@ function Carousel({ source, label = 'Galeria de resultados', className = '' }: {
       element.scrollLeft = segment
     }
     measure()
+    setReady(true)
     const observer = new ResizeObserver(measure)
     observer.observe(element)
     const resume = () => setPaused(false)
@@ -127,7 +131,7 @@ function Carousel({ source, label = 'Galeria de resultados', className = '' }: {
 
   return <div className="carousel-wrap">
     <div className={`carousel carousel-autoplay${paused ? ' is-paused' : ''} ${className}`.trim()} ref={ref} aria-label={label} onTouchStart={() => setPaused(true)}>
-      {items.map((item, index) => <article className="result-card" aria-hidden={index < source.length || index >= source.length * 2} key={index}>{placeholder(item)}</article>)}
+      {items.map((item, index) => <article className="result-card" aria-hidden={index < source.length || index >= source.length * 2} key={index}>{ready && placeholder(item)}</article>)}
     </div>
   </div>
 }
@@ -170,7 +174,7 @@ function UpgradeModal({ open, onClose }: { open: boolean; onClose: () => void })
       <button ref={closeButton} className="close" onClick={onClose} aria-label="Fechar"><X /></button>
       <span className="eyebrow">{pageContent.offers.popup.eyebrow}</span><p className="modal-headline">{pageContent.offers.popup.headline}</p>{pageContent.offers.popup.message.map(text => <p key={text}>{text}</p>)}<h2 id="modal-title">{pageContent.offers.popup.title}</h2>
       <FeatureList items={pageContent.offers.complete.items} /><Price data={pageContent.offers.popup} />
-      <Button href={withAttributionParams(links.checkoutUpgrade)}>{pageContent.offers.popup.ctaLabel}</Button>
+      <Button href={links.checkoutUpgrade}>{pageContent.offers.popup.ctaLabel}</Button>
       <Button kind="secondary" onClick={() => { onClose(); window.location.href = withAttributionParams(links.checkoutSimple) }}>{pageContent.offers.popup.secondaryLabel}</Button>
     </div>
   </div>
@@ -209,7 +213,7 @@ function App() {
       if (!canonical) { canonical = document.createElement('link'); canonical.rel = 'canonical'; document.head.append(canonical) }
       canonical.href = seo.canonical
     }
-    Object.entries({ '--brand-primary': theme.brand.primary, '--brand-primary-dark': theme.brand.primaryDark, '--brand-primary-light': theme.brand.primaryLight, '--cta-color': theme.cta.color, '--cta-dark': theme.cta.dark, '--cta-light': theme.cta.light, '--background-section': theme.background.section, '--background-card-featured': theme.background.cardFeatured, '--background-card-light': theme.background.cardLight, '--highlight-background': theme.highlight.background, '--highlight-border': theme.highlight.border, '--highlight-text': theme.highlight.text }).forEach(([key, value]) => document.documentElement.style.setProperty(key, value))
+    Object.entries(themeVariables()).forEach(([key, value]) => document.documentElement.style.setProperty(key, value))
   }, [])
   return <>
     <UrgencyBar />
@@ -226,7 +230,7 @@ function App() {
       <section className="section section-muted"><div className="container"><h2 className="with-subtitle">{pageContent.bonusesSection.title}</h2><Subtitle text={pageContent.bonusesSection.subtitle} /><ol className="journey">{pageContent.bonusesSection.journey.map(item => <li key={item.step}><strong className="highlight-box">{item.step}</strong> <span>{item.text}</span></li>)}</ol><div className="card-grid">{pageContent.bonuses.map(item => <article className="content-card bonus" key={item.eyebrow}><div className="square-media">{placeholder(item)}</div><span className="eyebrow">🎁 <span className="highlight-box">{item.eyebrow}:</span> incluso na oferta completa</span><h3>{item.title}</h3><p className="bonus-tagline">{item.tagline}</p><p>{item.description}</p><p className="list-title">{item.listTitle}</p><FeatureList items={item.list} />{item.value && <p className="bonus-price">{item.valueLabel} <s className="bonus-value">{item.value}</s></p>}</article>)}</div></div></section>
       <section className="section" id="ofertas"><div className="container"><h2 className="with-subtitle">{pageContent.offersSection.title}</h2><Subtitle text={pageContent.offersSection.subtitle} /><div className="offers">
         <article className="offer-card"><span className="eyebrow offer-eyebrow">{pageContent.offers.simple.eyebrow}</span><h3>{pageContent.offers.simple.title}</h3><p className="offer-tagline">{pageContent.offers.simple.tagline}</p><FeatureList items={pageContent.offers.simple.items} /><Price data={pageContent.offers.simple} /><div className="offer-action"><Button kind="secondary" onClick={() => setModalOpen(true)}>{pageContent.offers.simple.ctaLabel}</Button><img src={pageContent.offersSection.paymentSecurityImage} alt={pageContent.offersSection.paymentSecurityAlt} loading="lazy" />{pageContent.offers.simple.note && <p className="offer-note">{pageContent.offers.simple.note}</p>}</div></article>
-        <article className="offer-card featured"><span className="offer-badge">{pageContent.offers.complete.badge}</span><span className="eyebrow offer-eyebrow">{pageContent.offers.complete.eyebrow}</span><h3>{pageContent.offers.complete.title}</h3><p className="offer-tagline">{pageContent.offers.complete.tagline}</p>{pageContent.offers.complete.extra && <p className="offer-extra">{pageContent.offers.complete.extra}</p>}{pageContent.offers.complete.extraNote && <p className="offer-extra-note">{rich(pageContent.offers.complete.extraNote)}</p>}<FeatureList items={pageContent.offers.complete.items} /><Price data={pageContent.offers.complete} /><div className="offer-action"><Button kind="highlight" href={withAttributionParams(links.checkoutComplete)}>{pageContent.offers.complete.ctaLabel}</Button><img src={pageContent.offersSection.paymentSecurityImage} alt={pageContent.offersSection.paymentSecurityAlt} loading="lazy" /></div></article>
+        <article className="offer-card featured"><span className="offer-badge">{pageContent.offers.complete.badge}</span><span className="eyebrow offer-eyebrow">{pageContent.offers.complete.eyebrow}</span><h3>{pageContent.offers.complete.title}</h3><p className="offer-tagline">{pageContent.offers.complete.tagline}</p>{pageContent.offers.complete.extra && <p className="offer-extra">{pageContent.offers.complete.extra}</p>}{pageContent.offers.complete.extraNote && <p className="offer-extra-note">{rich(pageContent.offers.complete.extraNote)}</p>}<FeatureList items={pageContent.offers.complete.items} /><Price data={pageContent.offers.complete} /><div className="offer-action"><Button kind="highlight" href={links.checkoutComplete}>{pageContent.offers.complete.ctaLabel}</Button><img src={pageContent.offersSection.paymentSecurityImage} alt={pageContent.offersSection.paymentSecurityAlt} loading="lazy" /></div></article>
       </div></div></section>
       <section className="section section-muted"><div className="container guarantee"><img className="guarantee-seal" src={pageContent.guarantee.image} alt={pageContent.guarantee.imageAlt} loading="lazy" /><div><h2>{pageContent.guarantee.title}</h2>{pageContent.guarantee.body.map(text => <p key={text}>{text}</p>)}<p className="guarantee-highlight"><b>{pageContent.guarantee.highlightTitle}</b><br />{pageContent.guarantee.highlightText}</p></div></div></section>
       <section className="section"><div className="container narrow"><h2>{pageContent.faqSection.title}</h2><div className="faq">{pageContent.faq.map((item, index) => { const expanded = faqOpen === index; return <div className="faq-item" key={item.question}><button onClick={() => setFaqOpen(expanded ? null : index)} aria-expanded={expanded} aria-controls={`faq-${index}`}><span>{item.question}</span>{expanded ? <Minus /> : <Plus />}</button><div id={`faq-${index}`} hidden={!expanded}><p>{item.answer}</p></div></div> })}</div></div></section>
