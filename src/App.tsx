@@ -93,54 +93,39 @@ function Price({ data }: { data: PriceData }) {
 
 function Carousel({ source, label = 'Galeria de resultados', className = '' }: { source: readonly MediaItem[]; label?: string; className?: string }) {
   const ref = useRef<HTMLDivElement>(null)
+  const [paused, setPaused] = useState(false)
   const items = [...source, ...source, ...source]
-  const segmentWidth = () => (ref.current?.scrollWidth ?? 0) / 3
 
+  // Autoplay por animação CSS (transform nos cards): roda no compositor do navegador, sem depender de scrollLeft,
+  // que alguns celulares ignoram ou arredondam. A rolagem nativa continua disponível para deslizar com o dedo.
   useEffect(() => {
     const element = ref.current
     if (!element) return
-    // Posição acumulada em JS e gravada em pixels inteiros: celulares (120 Hz, iOS) descartam incrementos fracionários de scrollLeft.
-    let position = 0
-    let touching = false
-    const initialize = () => { position = segmentWidth(); element.scrollLeft = position }
-    initialize()
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    let frame = 0
-    let previousTime = performance.now()
-    const animate = (time: number) => {
-      const segment = segmentWidth()
-      if (touching || Math.abs(element.scrollLeft - position) > 2) position = element.scrollLeft
-      else if (segment) {
-        position += (Math.min(time - previousTime, 100) / 1000) * 75
-        if (position >= segment * 2) position -= segment
-        if (position < segment) position += segment
-        element.scrollLeft = Math.round(position)
-      }
-      previousTime = time
-      frame = window.requestAnimationFrame(animate)
+    const measure = () => {
+      const cards = element.children
+      const first = cards[0] as HTMLElement | undefined
+      const next = cards[source.length] as HTMLElement | undefined
+      if (!first || !next) return
+      const segment = next.offsetLeft - first.offsetLeft
+      element.style.setProperty('--carousel-segment', `${segment}px`)
+      element.style.setProperty('--carousel-duration', `${Math.max(segment / 75, 1)}s`)
+      element.scrollLeft = segment
     }
-    const startTouch = () => { touching = true }
-    const endTouch = () => { touching = false; position = element.scrollLeft }
-    element.addEventListener('touchstart', startTouch, { passive: true })
-    // Fim do toque ouvido na janela: se o gesto virar rolagem da página, o carrossel retoma mesmo assim.
-    window.addEventListener('touchend', endTouch, { passive: true })
-    window.addEventListener('touchcancel', endTouch, { passive: true })
-    const observer = new ResizeObserver(initialize)
+    measure()
+    const observer = new ResizeObserver(measure)
     observer.observe(element)
-    if (!reduceMotion) frame = window.requestAnimationFrame(animate)
-    window.addEventListener('resize', initialize)
+    const resume = () => setPaused(false)
+    window.addEventListener('touchend', resume, { passive: true })
+    window.addEventListener('touchcancel', resume, { passive: true })
     return () => {
-      if (frame) window.cancelAnimationFrame(frame)
       observer.disconnect()
-      window.removeEventListener('resize', initialize)
-      element.removeEventListener('touchstart', startTouch)
-      window.removeEventListener('touchend', endTouch)
-      window.removeEventListener('touchcancel', endTouch)
+      window.removeEventListener('touchend', resume)
+      window.removeEventListener('touchcancel', resume)
     }
-  }, [])
+  }, [source.length])
 
   return <div className="carousel-wrap">
-    <div className={`carousel ${className}`.trim()} ref={ref} aria-label={label}>
+    <div className={`carousel carousel-autoplay${paused ? ' is-paused' : ''} ${className}`.trim()} ref={ref} aria-label={label} onTouchStart={() => setPaused(true)}>
       {items.map((item, index) => <article className="result-card" aria-hidden={index < source.length || index >= source.length * 2} key={index}>{placeholder(item)}</article>)}
     </div>
   </div>
