@@ -13,7 +13,7 @@ export const pageContent = {
     image: '/images/hero-mockup-meu-fornecedor.webp',
     imageAlt: 'Mockup do aplicativo Meu Fornecedor',
     headline: 'COMECE A VENDER ACESSÓRIOS ENCONTRANDO FORNECEDORES COM PRODUTOS A PARTIR DE R$\u00a02,00',
-    body: 'Tenha acesso a 21 fornecedores organizados no aplicativo e encontre produtos para começar sua busca sem precisar procurar tudo do zero.',
+    body: 'Tenha acesso a 21 fornecedores organizados no aplicativo e encontre produtos a partir de R$\u00a02,00 para começar a montar seu primeiro mix sem precisar procurar tudo do zero.',
     paragraphs: [
       'Reunidos por quem trabalha há 14 anos com acessórios.',
     ],
@@ -63,7 +63,7 @@ export const pageContent = {
       body: '**Antes de organizar esses fornecedores no aplicativo, essa experiência foi construída na prática, trabalhando diretamente com acessórios e revenda.**',
       stats: [
         { title: '14 ANOS DE EXPERIÊNCIA NO RAMO', description: 'Experiência prática com acessórios femininos e revenda.' },
-        { title: '21 FORNECEDORES ORGANIZADOS', description: '12 fornecedores adicionais por apenas R$\u00a010 a mais.' },
+        { title: '21 FORNECEDORES ORGANIZADOS', description: 'Selecionados por quem trabalha há 14 anos com acessórios: semijoias, bijuterias, folheados, aço inox, prata 925 e acessórios de cabelo.' },
         { title: 'PRODUTOS A PARTIR DE R$\u00a02,00', description: 'Opções para quem busca começar com um investimento menor.' },
       ],
       proofs: [
@@ -141,7 +141,7 @@ export const pageContent = {
     },
     complete: {
       badge: 'PARA QUEM QUER COMEÇAR COMPLETO', eyebrow: 'OFERTA COMPLETA', title: 'MEU FORNECEDOR +\u00a03\u00a0BÔNUS',
-      tagline: 'Fornecedores + tudo para começar',
+      tagline: 'Fornecedores + materiais para dar os primeiros passos',
       extra: 'POR APENAS R$\u00a010 A MAIS',
       extraNote: 'Você leva **12 fornecedores adicionais + R$\u00a074,70 em bônus.**',
       items: [
@@ -187,7 +187,6 @@ export const pageContent = {
     { question: 'OS FORNECEDORES ENVIAM PARA TODO O BRASIL?', answer: 'A lista foi criada para facilitar o acesso a fornecedores que vendem online e realizam envios para diferentes regiões do Brasil. As condições de envio, pedido mínimo e valores são definidos individualmente por cada fornecedor.' },
     { question: 'QUANTOS FORNECEDORES EU VOU ENCONTRAR?', answer: 'A Oferta Simples reúne 21 fornecedores de bijuterias, semijoias e acessórios femininos, organizados no aplicativo. A Oferta Completa reúne 33 fornecedores (os 21 da Simples + 12 adicionais) e inclui os 3 bônus.' },
     { question: 'EU PRECISO TER EXPERIÊNCIA PARA COMEÇAR?', answer: 'Não. O Meu Fornecedor foi pensado para quem quer começar: os fornecedores já estão organizados por categoria, com contato, pedido mínimo e preço inicial dos produtos. Na Oferta Completa, os bônus ajudam você a escolher os primeiros produtos, calcular o preço de venda e divulgar sua loja.' },
-    { question: 'EU TENHO SUPORTE SE PRECISAR DE AJUDA?', answer: 'Sim. O produto conta com suporte pelo WhatsApp para auxiliar você com questões relacionadas ao acesso ao material.' },
   ],
   footer: { brand: 'Meu Fornecedor', copyright: '© 2026 Meu Fornecedor' },
 }
