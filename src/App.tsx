@@ -12,7 +12,39 @@ const placeholder = (item: MediaItem, priority = false) => item.src ? (
 
 const rich = (text: string) => text.split(/\*\*(.+?)\*\*/g).map((part, i) => i % 2 ? <strong key={i}>{part}</strong> : part)
 
-function Button({ children, onClick, href, kind = 'primary' }: { children: React.ReactNode; onClick?: () => void; href?: string; kind?: 'primary' | 'secondary' }) {
+// Mobile: desce até a primeira oferta, pausa e segue para a Oferta Completa. Interrompe se a pessoa rolar por conta própria.
+function scrollToOffers() {
+  const section = document.getElementById('ofertas')
+  const first = section?.querySelector<HTMLElement>('.offer-card:not(.featured)')
+  const featured = section?.querySelector<HTMLElement>('.offer-card.featured')
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  if (!first || !featured || reduceMotion || !window.matchMedia('(max-width: 767px)').matches) {
+    section?.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' })
+    return
+  }
+  let cancelled = false
+  let timer = 0
+  const cancel = () => { cancelled = true; window.clearTimeout(timer); cleanup() }
+  const cleanup = () => { window.removeEventListener('touchstart', cancel); window.removeEventListener('wheel', cancel) }
+  const afterScroll = (callback: () => void) => {
+    let done = false
+    const finish = () => { if (done) return; done = true; window.removeEventListener('scrollend', finish); callback() }
+    window.addEventListener('scrollend', finish)
+    window.setTimeout(finish, 1200)
+  }
+  first.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  afterScroll(() => {
+    if (cancelled) return
+    window.addEventListener('touchstart', cancel, { passive: true })
+    window.addEventListener('wheel', cancel, { passive: true })
+    timer = window.setTimeout(() => {
+      cleanup()
+      if (!cancelled) featured.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }, 1200)
+  })
+}
+
+function Button({ children, onClick, href, kind = 'primary' }: { children: React.ReactNode; onClick?: () => void; href?: string; kind?: 'primary' | 'secondary' | 'highlight' }) {
   const className = `button button-${kind}`
   return href ? <a className={className} href={href}>{children}</a> : <button className={className} type="button" onClick={onClick}>{children}</button>
 }
@@ -67,20 +99,32 @@ function Carousel({ source, label = 'Galeria de resultados', className = '' }: {
   useEffect(() => {
     const element = ref.current
     if (!element) return
-    const initialize = () => element.scrollTo({ left: segmentWidth() })
+    // Posição acumulada em JS e gravada em pixels inteiros: celulares (120 Hz, iOS) descartam incrementos fracionários de scrollLeft.
+    let position = 0
+    let touching = false
+    const initialize = () => { position = segmentWidth(); element.scrollLeft = position }
     initialize()
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     let frame = 0
     let previousTime = performance.now()
     const animate = (time: number) => {
       const segment = segmentWidth()
-      if (segment) {
-        element.scrollLeft += ((time - previousTime) / 1000) * 75
-        if (element.scrollLeft >= segment * 2) element.scrollLeft -= segment
+      if (touching || Math.abs(element.scrollLeft - position) > 2) position = element.scrollLeft
+      else if (segment) {
+        position += (Math.min(time - previousTime, 100) / 1000) * 75
+        if (position >= segment * 2) position -= segment
+        if (position < segment) position += segment
+        element.scrollLeft = Math.round(position)
       }
       previousTime = time
       frame = window.requestAnimationFrame(animate)
     }
+    const startTouch = () => { touching = true }
+    const endTouch = () => { touching = false; position = element.scrollLeft }
+    element.addEventListener('touchstart', startTouch, { passive: true })
+    // Fim do toque ouvido na janela: se o gesto virar rolagem da página, o carrossel retoma mesmo assim.
+    window.addEventListener('touchend', endTouch, { passive: true })
+    window.addEventListener('touchcancel', endTouch, { passive: true })
     const observer = new ResizeObserver(initialize)
     observer.observe(element)
     if (!reduceMotion) frame = window.requestAnimationFrame(animate)
@@ -89,6 +133,9 @@ function Carousel({ source, label = 'Galeria de resultados', className = '' }: {
       if (frame) window.cancelAnimationFrame(frame)
       observer.disconnect()
       window.removeEventListener('resize', initialize)
+      element.removeEventListener('touchstart', startTouch)
+      window.removeEventListener('touchend', endTouch)
+      window.removeEventListener('touchcancel', endTouch)
     }
   }, [])
 
@@ -104,8 +151,8 @@ function Modules() {
   const toggle = (index: number) => setOpen(old => old.includes(index) ? old.filter(item => item !== index) : [...old, index])
   return <div className="card-grid">{pageContent.modules.map((item, index) => {
     const expanded = open.includes(index)
-    return <article className="content-card" key={item.eyebrow}>
-      <div className="square-media">{placeholder(item)}</div><span className="eyebrow">{item.eyebrow}</span><h3>{item.title}</h3>
+    return <article className="content-card" key={item.title}>
+      <div className="square-media">{placeholder(item)}</div>{item.eyebrow && <span className="eyebrow">{item.eyebrow}</span>}<h3>{item.title}</h3>
       <button className="accordion-trigger" onClick={() => toggle(index)} aria-expanded={expanded} aria-controls={`module-${index}`}><span>{pageContent.modulesSection.accordionLabel}</span>{expanded ? <Minus /> : <Plus />}</button>
       <div className="accordion-panel" id={`module-${index}`} hidden={!expanded}><p><b>{item.highlight}</b></p><p>{item.description}</p>{'list' in item && item.list && <><p className="list-title">{item.listTitle}</p><FeatureList items={item.list} /></>}{'list2' in item && item.list2 && <><p className="list-title">{item.list2Title}</p><FeatureList items={item.list2} /></>}</div>
     </article>
@@ -176,24 +223,24 @@ function App() {
       if (!canonical) { canonical = document.createElement('link'); canonical.rel = 'canonical'; document.head.append(canonical) }
       canonical.href = seo.canonical
     }
-    Object.entries({ '--brand-primary': theme.brand.primary, '--brand-primary-dark': theme.brand.primaryDark, '--brand-primary-light': theme.brand.primaryLight, '--cta-color': theme.cta.color, '--cta-dark': theme.cta.dark, '--cta-light': theme.cta.light }).forEach(([key, value]) => document.documentElement.style.setProperty(key, value))
+    Object.entries({ '--brand-primary': theme.brand.primary, '--brand-primary-dark': theme.brand.primaryDark, '--brand-primary-light': theme.brand.primaryLight, '--cta-color': theme.cta.color, '--cta-dark': theme.cta.dark, '--cta-light': theme.cta.light, '--background-section': theme.background.section, '--background-card-featured': theme.background.cardFeatured, '--background-card-light': theme.background.cardLight, '--highlight-background': theme.highlight.background, '--highlight-border': theme.highlight.border, '--highlight-text': theme.highlight.text }).forEach(([key, value]) => document.documentElement.style.setProperty(key, value))
   }, [])
   return <>
     <UrgencyBar />
     <main>
       <section className="hero"><div className="container hero-inner"><div className="hero-media">{placeholder({ src: pageContent.hero.image, alt: pageContent.hero.imageAlt, label: 'Imagem da Hero', ratio: '3:2' }, true)}</div><h1>{rich(pageContent.hero.headline)}</h1><p className="lead">{rich(pageContent.hero.body)}</p>
         <div className="hero-copy">{pageContent.hero.paragraphs.map(text => <p key={text}>{text}</p>)}</div>
-        <div className="hero-action"><Button onClick={() => document.getElementById('ofertas')?.scrollIntoView({ behavior: 'smooth' })}>{pageContent.hero.ctaLabel}</Button><p className="hero-price"><b>{pageContent.hero.product.price}</b> {pageContent.hero.product.note}</p><FeatureList items={pageContent.hero.checklist} /><p className="hero-note">{pageContent.hero.ctaNote}</p><img src={pageContent.hero.securityImage} alt={pageContent.hero.securityImageAlt} /></div></div></section>
+        <div className="hero-action"><Button kind="highlight" onClick={scrollToOffers}>{pageContent.hero.ctaLabel}</Button><p className="hero-price"><b>{pageContent.hero.product.price}</b> {pageContent.hero.product.note}</p><FeatureList items={pageContent.hero.checklist} /><p className="hero-note">{pageContent.hero.ctaNote}</p><img src={pageContent.hero.securityImage} alt={pageContent.hero.securityImageAlt} /></div></div></section>
       <section className="section section-muted"><div className="container"><h2 className="with-subtitle">{pageContent.results.title}</h2><Subtitle text={pageContent.results.subtitle} /><Carousel source={pageContent.results.items} />{printItems.length > 0 && <div className="prints-block">{pageContent.results.prints.title && <h3 className="prints-title">{pageContent.results.prints.title}</h3>}<Subtitle text={pageContent.results.prints.subtitle || undefined} /><Carousel source={printItems} label="Galeria de prints" className="carousel-prints" /></div>}
-        <div className="authority"><h3>{pageContent.results.authority.title}</h3><p className="authority-body">{pageContent.results.authority.body}</p>
+        <div className="authority">{pageContent.results.authority.title && <h3>{pageContent.results.authority.title}</h3>}<p className="authority-body">{rich(pageContent.results.authority.body)}</p>
           <div className="card-grid stats">{pageContent.results.authority.stats.map(stat => <article className="content-card stat-card" key={stat.title}><h3>{stat.title}</h3><p>{stat.description}</p></article>)}</div>
-          <div className="proofs">{pageContent.results.authority.proofs.map(proof => <figure key={proof.label}><div className="proof-media">{placeholder(proof)}</div><figcaption>{proof.caption}</figcaption></figure>)}</div>
+          <div className="proofs">{pageContent.results.authority.proofs.map(proof => <figure key={proof.label}><figcaption>{rich(proof.caption)}</figcaption><div className="proof-media">{placeholder(proof)}</div></figure>)}</div>
         </div></div></section>
       <section className="section"><div className="container"><h2 className="with-subtitle">{pageContent.modulesSection.title}</h2><Subtitle text={pageContent.modulesSection.subtitle} /><Modules /></div></section>
-      <section className="section section-muted"><div className="container"><h2 className="with-subtitle">{pageContent.bonusesSection.title}</h2><Subtitle text={pageContent.bonusesSection.subtitle} /><ol className="journey">{pageContent.bonusesSection.journey.map(item => <li key={item.step}><strong>{item.step}</strong> <span>{item.text}</span></li>)}</ol><div className="card-grid">{pageContent.bonuses.map(item => <article className="content-card bonus" key={item.eyebrow}><div className="square-media">{placeholder(item)}</div><span className="eyebrow">🎁 {item.eyebrow}: incluso na oferta completa</span><h3>{item.title}</h3><p className="bonus-tagline">{item.tagline}</p><p>{item.description}</p><p className="list-title">{item.listTitle}</p><FeatureList items={item.list} />{item.value && <p className="bonus-price">{item.valueLabel} <s className="bonus-value">{item.value}</s></p>}</article>)}</div></div></section>
+      <section className="section section-muted"><div className="container"><h2 className="with-subtitle">{pageContent.bonusesSection.title}</h2><Subtitle text={pageContent.bonusesSection.subtitle} /><ol className="journey">{pageContent.bonusesSection.journey.map(item => <li key={item.step}><strong className="highlight-box">{item.step}</strong> <span>{item.text}</span></li>)}</ol><div className="card-grid">{pageContent.bonuses.map(item => <article className="content-card bonus" key={item.eyebrow}><div className="square-media">{placeholder(item)}</div><span className="eyebrow">🎁 <span className="highlight-box">{item.eyebrow}:</span> incluso na oferta completa</span><h3>{item.title}</h3><p className="bonus-tagline">{item.tagline}</p><p>{item.description}</p><p className="list-title">{item.listTitle}</p><FeatureList items={item.list} />{item.value && <p className="bonus-price">{item.valueLabel} <s className="bonus-value">{item.value}</s></p>}</article>)}</div></div></section>
       <section className="section" id="ofertas"><div className="container"><h2 className="with-subtitle">{pageContent.offersSection.title}</h2><Subtitle text={pageContent.offersSection.subtitle} /><div className="offers">
         <article className="offer-card"><span className="eyebrow offer-eyebrow">{pageContent.offers.simple.eyebrow}</span><h3>{pageContent.offers.simple.title}</h3><p className="offer-tagline">{pageContent.offers.simple.tagline}</p><FeatureList items={pageContent.offers.simple.items} /><Price data={pageContent.offers.simple} /><div className="offer-action"><Button kind="secondary" onClick={() => setModalOpen(true)}>{pageContent.offers.simple.ctaLabel}</Button><img src={pageContent.offersSection.paymentSecurityImage} alt={pageContent.offersSection.paymentSecurityAlt} loading="lazy" />{pageContent.offers.simple.note && <p className="offer-note">{pageContent.offers.simple.note}</p>}</div></article>
-        <article className="offer-card featured"><span className="offer-badge">{pageContent.offers.complete.badge}</span><span className="eyebrow offer-eyebrow">{pageContent.offers.complete.eyebrow}</span><h3>{pageContent.offers.complete.title}</h3><p className="offer-tagline">{pageContent.offers.complete.tagline}</p>{pageContent.offers.complete.extra && <p className="offer-extra">{pageContent.offers.complete.extra}</p>}{pageContent.offers.complete.extraNote && <p className="offer-extra-note">{pageContent.offers.complete.extraNote}</p>}<FeatureList items={pageContent.offers.complete.items} /><Price data={pageContent.offers.complete} /><div className="offer-action"><Button href={withAttributionParams(links.checkoutComplete)}>{pageContent.offers.complete.ctaLabel}</Button><img src={pageContent.offersSection.paymentSecurityImage} alt={pageContent.offersSection.paymentSecurityAlt} loading="lazy" /></div></article>
+        <article className="offer-card featured"><span className="offer-badge">{pageContent.offers.complete.badge}</span><span className="eyebrow offer-eyebrow">{pageContent.offers.complete.eyebrow}</span><h3>{pageContent.offers.complete.title}</h3><p className="offer-tagline">{pageContent.offers.complete.tagline}</p>{pageContent.offers.complete.extra && <p className="offer-extra">{pageContent.offers.complete.extra}</p>}{pageContent.offers.complete.extraNote && <p className="offer-extra-note">{rich(pageContent.offers.complete.extraNote)}</p>}<FeatureList items={pageContent.offers.complete.items} /><Price data={pageContent.offers.complete} /><div className="offer-action"><Button kind="highlight" href={withAttributionParams(links.checkoutComplete)}>{pageContent.offers.complete.ctaLabel}</Button><img src={pageContent.offersSection.paymentSecurityImage} alt={pageContent.offersSection.paymentSecurityAlt} loading="lazy" /></div></article>
       </div></div></section>
       <section className="section section-muted"><div className="container guarantee"><img className="guarantee-seal" src={pageContent.guarantee.image} alt={pageContent.guarantee.imageAlt} loading="lazy" /><div><h2>{pageContent.guarantee.title}</h2>{pageContent.guarantee.body.map(text => <p key={text}>{text}</p>)}<p className="guarantee-highlight"><b>{pageContent.guarantee.highlightTitle}</b><br />{pageContent.guarantee.highlightText}</p></div></div></section>
       <section className="section"><div className="container narrow"><h2>{pageContent.faqSection.title}</h2><div className="faq">{pageContent.faq.map((item, index) => { const expanded = faqOpen === index; return <div className="faq-item" key={item.question}><button onClick={() => setFaqOpen(expanded ? null : index)} aria-expanded={expanded} aria-controls={`faq-${index}`}><span>{item.question}</span>{expanded ? <Minus /> : <Plus />}</button><div id={`faq-${index}`} hidden={!expanded}><p>{item.answer}</p></div></div> })}</div></div></section>
