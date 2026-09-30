@@ -99,20 +99,31 @@ function Carousel({ source, label = 'Galeria de resultados', className = '' }: {
   useEffect(() => {
     const element = ref.current
     if (!element) return
-    const initialize = () => element.scrollTo({ left: segmentWidth() })
+    // Posição acumulada em JS e gravada em pixels inteiros: celulares (120 Hz, iOS) descartam incrementos fracionários de scrollLeft.
+    let position = 0
+    let touching = false
+    const initialize = () => { position = segmentWidth(); element.scrollLeft = position }
     initialize()
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     let frame = 0
     let previousTime = performance.now()
     const animate = (time: number) => {
       const segment = segmentWidth()
-      if (segment) {
-        element.scrollLeft += ((time - previousTime) / 1000) * 75
-        if (element.scrollLeft >= segment * 2) element.scrollLeft -= segment
+      if (touching || Math.abs(element.scrollLeft - position) > 2) position = element.scrollLeft
+      else if (segment) {
+        position += (Math.min(time - previousTime, 100) / 1000) * 75
+        if (position >= segment * 2) position -= segment
+        if (position < segment) position += segment
+        element.scrollLeft = Math.round(position)
       }
       previousTime = time
       frame = window.requestAnimationFrame(animate)
     }
+    const startTouch = () => { touching = true }
+    const endTouch = () => { touching = false; position = element.scrollLeft }
+    element.addEventListener('touchstart', startTouch, { passive: true })
+    element.addEventListener('touchend', endTouch, { passive: true })
+    element.addEventListener('touchcancel', endTouch, { passive: true })
     const observer = new ResizeObserver(initialize)
     observer.observe(element)
     if (!reduceMotion) frame = window.requestAnimationFrame(animate)
@@ -121,6 +132,9 @@ function Carousel({ source, label = 'Galeria de resultados', className = '' }: {
       if (frame) window.cancelAnimationFrame(frame)
       observer.disconnect()
       window.removeEventListener('resize', initialize)
+      element.removeEventListener('touchstart', startTouch)
+      element.removeEventListener('touchend', endTouch)
+      element.removeEventListener('touchcancel', endTouch)
     }
   }, [])
 
