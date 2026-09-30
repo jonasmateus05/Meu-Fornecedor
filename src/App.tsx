@@ -122,8 +122,9 @@ function Carousel({ source, label = 'Galeria de resultados', className = '' }: {
     const startTouch = () => { touching = true }
     const endTouch = () => { touching = false; position = element.scrollLeft }
     element.addEventListener('touchstart', startTouch, { passive: true })
-    element.addEventListener('touchend', endTouch, { passive: true })
-    element.addEventListener('touchcancel', endTouch, { passive: true })
+    // Fim do toque ouvido na janela: se o gesto virar rolagem da página, o carrossel retoma mesmo assim.
+    window.addEventListener('touchend', endTouch, { passive: true })
+    window.addEventListener('touchcancel', endTouch, { passive: true })
     const observer = new ResizeObserver(initialize)
     observer.observe(element)
     if (!reduceMotion) frame = window.requestAnimationFrame(animate)
@@ -133,8 +134,8 @@ function Carousel({ source, label = 'Galeria de resultados', className = '' }: {
       observer.disconnect()
       window.removeEventListener('resize', initialize)
       element.removeEventListener('touchstart', startTouch)
-      element.removeEventListener('touchend', endTouch)
-      element.removeEventListener('touchcancel', endTouch)
+      window.removeEventListener('touchend', endTouch)
+      window.removeEventListener('touchcancel', endTouch)
     }
   }, [])
 
