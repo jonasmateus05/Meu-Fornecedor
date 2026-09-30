@@ -7,7 +7,8 @@ import { theme } from './config/theme'
 import { withAttributionParams } from './utils/attribution'
 
 const placeholder = (item: MediaItem, priority = false) => item.src ? (
-  <img src={item.src} alt={item.alt} loading={priority ? 'eager' : 'lazy'} fetchPriority={priority ? 'high' : 'auto'} />
+  <img src={item.src} alt={item.alt} loading={priority ? 'eager' : 'lazy'} fetchPriority={priority ? 'high' : 'auto'} decoding={priority ? 'sync' : 'async'}
+    {...(priority && item.src.endsWith('/hero-mockup-meu-fornecedor.webp') ? { srcSet: '/images/hero-mockup-meu-fornecedor-mobile.webp 800w, /images/hero-mockup-meu-fornecedor.webp 1200w', sizes: '(max-width: 767px) 100vw, (max-width: 1023px) min(100vw, 1040px), 520px' } : {})} />
 ) : <div className="placeholder" role="img" aria-label={item.alt}><span>{item.label}</span><small>{item.ratio === '3:2' ? '1200 × 800' : item.ratio === '3:4' ? '1200 × 1600' : item.ratio === '2:3' ? '1200 × 1800' : '1200 × 1200'} • {item.ratio}</small></div>
 
 const rich = (text: string) => text.split(/\*\*(.+?)\*\*/g).map((part, i) => i % 2 ? <strong key={i}>{part}</strong> : part)
