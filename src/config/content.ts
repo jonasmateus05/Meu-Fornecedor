@@ -117,11 +117,8 @@ export const pageContent = {
     },
   ],
   offersSection: {
-    title: 'COMECE SÓ COM OS FORNECEDORES OU LEVE O PACOTE COMPLETO.',
-    subtitle: [
-      'Em vez de começar sua busca do zero, você já recebe os fornecedores organizados para consultar quando precisar.',
-      'Escolha a opção que faz mais sentido para o momento do seu negócio.',
-    ],
+    title: 'QUAL OPÇÃO FAZ MAIS SENTIDO PARA VOCÊ?',
+    subtitle: 'Comece com os fornecedores ou aproveite a opção completa com mais 12 fornecedores e 3 bônus.',
     paymentSecurityImage: '/images/selos-seguranca-compra.svg',
     paymentSecurityAlt: 'Selos de compra segura, satisfação garantida e privacidade protegida',
   },
@@ -139,7 +136,7 @@ export const pageContent = {
       note: '',
     },
     complete: {
-      badge: 'PARA QUEM QUER COMEÇAR COMPLETO', eyebrow: 'OFERTA COMPLETA', title: 'MEU FORNECEDOR +\u00a03\u00a0BÔNUS',
+      badge: 'A OPÇÃO COMPLETA', eyebrow: 'OFERTA COMPLETA', title: 'MEU FORNECEDOR +\u00a03\u00a0BÔNUS',
       tagline: 'Fornecedores + materiais para dar os primeiros passos',
       extra: 'POR APENAS R$\u00a010 A MAIS, VOCÊ LEVA:',
       extraNote: '',
