@@ -52,6 +52,8 @@ export const pageContent = {
       ],
     },
     authority: {
+      // Bloco de experiência (texto, cards dos 14 anos e fotos da loja) oculto a pedido. Para reativar, mude para true.
+      enabled: false,
       title: '',
       body: '**Antes de organizar esses fornecedores no aplicativo, essa experiência foi construída na prática, trabalhando diretamente com acessórios e revenda.**',
       stats: [
