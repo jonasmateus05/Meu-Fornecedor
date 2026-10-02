@@ -33,17 +33,10 @@ export const pageContent = {
     securityImageAlt: 'Selos de compra segura, satisfação garantida e privacidade protegida',
   },
   results: {
-    title: 'PARE DE PROCURAR FORNECEDORES NO ESCURO.',
-    subtitle: 'Veja exemplos de produtos e conheça o aplicativo que organiza os fornecedores para você começar sua busca.',
-    // Fotos reais de produtos dos fornecedores da lista (não são depoimentos de compradores).
-    items: [
-      { src: '/images/produto-01-brinco-dourado-loja.webp', alt: 'Brinco dourado em cartela, exposto em loja de fornecedor', label: 'Produto de fornecedor disponível na lista', ratio: '2:3' as const },
-      { src: '/images/produto-02-catalogo-brincos.webp', alt: 'Catálogo de fornecedor com brincos dourados e prateados', label: 'Produto de fornecedor disponível na lista', ratio: '2:3' as const },
-      { src: '/images/produto-03-brinco-quadrado-loja.webp', alt: 'Brinco dourado quadrado em cartela, exposto em loja de fornecedor', label: 'Produto de fornecedor disponível na lista', ratio: '2:3' as const },
-      { src: '/images/produto-04-catalogo-brincos.webp', alt: 'Catálogo de fornecedor com brincos dourados e prateados em formatos variados', label: 'Produto de fornecedor disponível na lista', ratio: '2:3' as const },
-      { src: '/images/produto-05-brinco-coracao-loja.webp', alt: 'Brinco dourado em formato de coração, exposto em loja de fornecedor', label: 'Produto de fornecedor disponível na lista', ratio: '2:3' as const },
-      { src: '/images/produto-06-catalogo-brincos.webp', alt: 'Catálogo de fornecedor com brincos dourados de argola, laço e leque', label: 'Produto de fornecedor disponível na lista', ratio: '2:3' as const },
-    ],
+    // Título, subtítulo e carrossel de fotos de produtos removidos a pedido. Para reativar, preencha os campos e a lista.
+    title: '',
+    subtitle: '',
+    items: [] as MediaItem[],
     // Campos para prints de WhatsApp. Para ativar: suba o arquivo em public/images/ e preencha o src,
     // (caminho começando com /images/ + nome do arquivo). Campo com src vazio aparece como espaço reservado (1200 × 1200).
     prints: {
@@ -59,6 +52,8 @@ export const pageContent = {
       ],
     },
     authority: {
+      // Bloco de experiência (texto, cards dos 14 anos e fotos da loja) oculto a pedido. Para reativar, mude para true.
+      enabled: false,
       title: '',
       body: '**Antes de organizar esses fornecedores no aplicativo, essa experiência foi construída na prática, trabalhando diretamente com acessórios e revenda.**',
       stats: [
@@ -87,11 +82,12 @@ export const pageContent = {
     subtitle: [
       'Você já terá os fornecedores. Agora, esses 3 bônus ajudam a transformar a pesquisa em ação.',
     ],
+    journeyTitle: 'SEU PRIMEIRO CAMINHO PARA COMEÇAR',
     journey: [
-      { step: '1. ENCONTRE', text: 'os fornecedores' },
-      { step: '2. ESCOLHA', text: 'os produtos (Guia)' },
-      { step: '3. PRECIFIQUE', text: 'suas peças (Calculadora)' },
-      { step: '4. DIVULGUE', text: 'sua loja (Kit)' },
+      { step: '01 — ENCONTRE', text: 'Seus fornecedores organizados.' },
+      { step: '02 — ESCOLHA', text: 'Os produtos para começar seu mix.' },
+      { step: '03 — PRECIFIQUE', text: 'Use a calculadora para definir seus preços.' },
+      { step: '04 — DIVULGUE', text: 'Use o kit para começar a apresentar sua loja.' },
     ],
   },
   bonuses: [
@@ -121,8 +117,11 @@ export const pageContent = {
     },
   ],
   offersSection: {
-    title: 'ESCOLHA COMO VOCÊ QUER COMEÇAR.',
-    subtitle: 'Você poderia gastar horas procurando fornecedores por conta própria. Aqui, eles já estão organizados para você.',
+    title: 'COMECE SÓ COM OS FORNECEDORES OU LEVE O PACOTE COMPLETO.',
+    subtitle: [
+      'Em vez de começar sua busca do zero, você já recebe os fornecedores organizados para consultar quando precisar.',
+      'Escolha a opção que faz mais sentido para o momento do seu negócio.',
+    ],
     paymentSecurityImage: '/images/selos-seguranca-compra.svg',
     paymentSecurityAlt: 'Selos de compra segura, satisfação garantida e privacidade protegida',
   },
@@ -142,8 +141,9 @@ export const pageContent = {
     complete: {
       badge: 'PARA QUEM QUER COMEÇAR COMPLETO', eyebrow: 'OFERTA COMPLETA', title: 'MEU FORNECEDOR +\u00a03\u00a0BÔNUS',
       tagline: 'Fornecedores + materiais para dar os primeiros passos',
-      extra: 'POR APENAS R$\u00a010 A MAIS',
-      extraNote: 'Você leva **12 fornecedores adicionais + R$\u00a074,70 em bônus.**',
+      extra: 'POR APENAS R$\u00a010 A MAIS, VOCÊ LEVA:',
+      extraNote: '',
+      gains: ['+ 12 fornecedores', '+ 3 bônus', '+ R$\u00a074,70 em materiais'],
       items: [
         { label: '**33 FORNECEDORES ORGANIZADOS**' },
         { label: '**12 FORNECEDORES A MAIS QUE A OFERTA SIMPLES**' },
@@ -183,10 +183,10 @@ export const pageContent = {
   faqSection: { title: 'PERGUNTAS FREQUENTES' },
   faq: [
     { question: 'COMO RECEBO O ACESSO AO MEU FORNECEDOR?', answer: 'Após a confirmação do pagamento, você recebe as instruções necessárias para acessar o Meu Fornecedor pelo aplicativo e consultar os fornecedores disponíveis.' },
-    { question: 'OS FORNECEDORES VENDEM ONLINE?', answer: 'Sim. A proposta da lista é reunir fornecedores que atendem online, permitindo que você entre em contato e faça suas compras diretamente com cada fornecedor.' },
-    { question: 'OS FORNECEDORES ENVIAM PARA TODO O BRASIL?', answer: 'A lista foi criada para facilitar o acesso a fornecedores que vendem online e realizam envios para diferentes regiões do Brasil. As condições de envio, pedido mínimo e valores são definidos individualmente por cada fornecedor.' },
-    { question: 'QUANTOS FORNECEDORES EU VOU ENCONTRAR?', answer: 'A Oferta Simples reúne 21 fornecedores de bijuterias, semijoias e acessórios femininos, organizados no aplicativo. A Oferta Completa reúne 33 fornecedores (os 21 da Simples + 12 adicionais) e inclui os 3 bônus.' },
-    { question: 'EU PRECISO TER EXPERIÊNCIA PARA COMEÇAR?', answer: 'Não. O Meu Fornecedor foi pensado para quem quer começar: os fornecedores já estão organizados por categoria, com contato, pedido mínimo e preço inicial dos produtos. Na Oferta Completa, os bônus ajudam você a escolher os primeiros produtos, calcular o preço de venda e divulgar sua loja.' },
+    { question: 'OS FORNECEDORES VENDEM ONLINE?', answer: 'Sim. O Meu Fornecedor reúne fornecedores que trabalham com vendas online, permitindo que você consulte as opções disponíveis pelo aplicativo.' },
+    { question: 'OS FORNECEDORES ENVIAM PARA TODO O BRASIL?', answer: 'As condições de envio podem variar de fornecedor para fornecedor. Antes de realizar sua compra, confirme diretamente com o fornecedor as regiões atendidas, valores e condições de entrega.' },
+    { question: 'QUANTOS FORNECEDORES EU VOU ENCONTRAR?', answer: 'Na oferta simples, você recebe acesso a 21 fornecedores organizados. Na oferta completa, são 33 fornecedores, além dos 3 bônus.' },
+    { question: 'EU PRECISO TER EXPERIÊNCIA PARA COMEÇAR?', answer: 'Não é necessário ter experiência prévia para acessar o Meu Fornecedor. O material foi organizado para facilitar sua pesquisa e ajudar você a dar os primeiros passos na escolha dos produtos e fornecedores.' },
   ],
   footer: { brand: 'Meu Fornecedor', copyright: '© 2026 Meu Fornecedor' },
 }
