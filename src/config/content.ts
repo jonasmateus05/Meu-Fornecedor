@@ -33,17 +33,10 @@ export const pageContent = {
     securityImageAlt: 'Selos de compra segura, satisfação garantida e privacidade protegida',
   },
   results: {
-    title: 'PARE DE PROCURAR FORNECEDORES NO ESCURO.',
-    subtitle: 'Veja exemplos de produtos e conheça o aplicativo que organiza os fornecedores para você começar sua busca.',
-    // Fotos reais de produtos dos fornecedores da lista (não são depoimentos de compradores).
-    items: [
-      { src: '/images/produto-01-brinco-dourado-loja.webp', alt: 'Brinco dourado em cartela, exposto em loja de fornecedor', label: 'Produto de fornecedor disponível na lista', ratio: '2:3' as const },
-      { src: '/images/produto-02-catalogo-brincos.webp', alt: 'Catálogo de fornecedor com brincos dourados e prateados', label: 'Produto de fornecedor disponível na lista', ratio: '2:3' as const },
-      { src: '/images/produto-03-brinco-quadrado-loja.webp', alt: 'Brinco dourado quadrado em cartela, exposto em loja de fornecedor', label: 'Produto de fornecedor disponível na lista', ratio: '2:3' as const },
-      { src: '/images/produto-04-catalogo-brincos.webp', alt: 'Catálogo de fornecedor com brincos dourados e prateados em formatos variados', label: 'Produto de fornecedor disponível na lista', ratio: '2:3' as const },
-      { src: '/images/produto-05-brinco-coracao-loja.webp', alt: 'Brinco dourado em formato de coração, exposto em loja de fornecedor', label: 'Produto de fornecedor disponível na lista', ratio: '2:3' as const },
-      { src: '/images/produto-06-catalogo-brincos.webp', alt: 'Catálogo de fornecedor com brincos dourados de argola, laço e leque', label: 'Produto de fornecedor disponível na lista', ratio: '2:3' as const },
-    ],
+    // Título, subtítulo e carrossel de fotos de produtos removidos a pedido. Para reativar, preencha os campos e a lista.
+    title: '',
+    subtitle: '',
+    items: [] as MediaItem[],
     // Campos para prints de WhatsApp. Para ativar: suba o arquivo em public/images/ e preencha o src,
     // (caminho começando com /images/ + nome do arquivo). Campo com src vazio aparece como espaço reservado (1200 × 1200).
     prints: {
