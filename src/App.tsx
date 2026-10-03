@@ -75,12 +75,12 @@ function UrgencyBar() {
   return <div className="urgency">{pageContent.urgencyBar.text}, {localDate}</div>
 }
 
-type PriceData = { previousPrice: string; beforeLabel?: string; todayLabel?: string; installmentCount: number; installmentValue: string; cashValue: string; paymentNote?: string }
+type PriceData = { previousPrice: string; beforeLabel?: string; beforeValue?: string; todayLabel?: string; installmentCount: number; installmentValue: string; cashValue: string; paymentNote?: string }
 
 function Price({ data }: { data: PriceData }) {
   if (!data.installmentCount) return <div className="price" aria-label="Preço da oferta">
     {data.previousPrice && <span className="price-before"><s>De {data.previousPrice}</s></span>}
-    {data.beforeLabel && <span className="price-before">{data.beforeLabel}</span>}
+    {data.beforeLabel && <span className="price-before">{data.beforeLabel}{data.beforeValue && <> <s>{data.beforeValue}</s></>}</span>}
     {data.todayLabel && <span className="price-today">{data.todayLabel}</span>}
     <strong>{data.cashValue || 'Preço a definir'}</strong>
     {data.paymentNote && <span>{data.paymentNote}</span>}
