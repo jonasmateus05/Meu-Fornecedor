@@ -136,11 +136,11 @@ export const pageContent = {
       note: '',
     },
     complete: {
-      badge: 'A OPÇÃO COMPLETA', eyebrow: 'OFERTA COMPLETA', title: 'MEU FORNECEDOR +\u00a03\u00a0BÔNUS',
-      tagline: 'Fornecedores + materiais para dar os primeiros passos',
+      badge: '⭐ MAIS VENDIDO', eyebrow: 'OFERTA COMPLETA', title: 'MEU FORNECEDOR +\u00a03\u00a0BÔNUS',
+      tagline: '33 fornecedores organizados + materiais para começar',
       extra: 'POR APENAS R$\u00a010 A MAIS, VOCÊ LEVA:',
       extraNote: '',
-      gains: ['+ 12 fornecedores', '+ 3 bônus', '+ R$\u00a074,70 em materiais'],
+      gains: ['+ 12 fornecedores', '+ 3 bônus'],
       items: [
         { label: '**33 FORNECEDORES ORGANIZADOS**' },
         { label: '**12 FORNECEDORES A MAIS QUE A OFERTA SIMPLES**' },
@@ -150,7 +150,7 @@ export const pageContent = {
         { label: 'Calculadora de Preço de Venda', value: 'R$ 19,90' },
         { label: 'Kit de Divulgação', value: 'R$ 24,90' },
       ],
-      previousPrice: '', beforeLabel: 'VALOR DOS BÔNUS: R$ 74,70', todayLabel: 'HOJE POR APENAS', installmentCount: 0, installmentValue: '', cashValue: 'R$ 19,90', paymentNote: 'Pagamento único.',
+      previousPrice: '', beforeLabel: 'Bônus no valor de', beforeValue: 'R$ 74,70', todayLabel: 'HOJE POR', installmentCount: 0, installmentValue: '', cashValue: 'R$ 19,90', paymentNote: 'Pagamento único • Acesso vitalício',
       ctaLabel: 'QUERO COMEÇAR COM 33 FORNECEDORES',
       note: '',
     },
