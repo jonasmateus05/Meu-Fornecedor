@@ -123,7 +123,7 @@ export const pageContent = {
     paymentSecurityAlt: 'Selos de compra segura, satisfação garantida e privacidade protegida',
   },
   offers: {
-    // Oferta real: pagamento único, sem parcelamento e sem PIX (installmentCount = 0).
+    // Parcelado em destaque (installmentCount/installmentValue) e valor à vista abaixo (cashValue).
     simple: {
       eyebrow: 'OFERTA SIMPLES',
       title: 'MEU FORNECEDOR',
@@ -131,7 +131,7 @@ export const pageContent = {
       extra: '',
       extraNote: '',
       items: ['**21 FORNECEDORES**', 'Acesso vitalício pelo aplicativo'],
-      previousPrice: '', beforeLabel: '', todayLabel: 'HOJE POR APENAS', installmentCount: 0, installmentValue: '', cashValue: 'R$ 9,90', paymentNote: 'Pagamento único.',
+      previousPrice: '', beforeLabel: '', todayLabel: 'HOJE POR APENAS', installmentCount: 2, installmentValue: 'R$ 5,50', cashValue: 'R$ 9,90', paymentNote: '',
       ctaLabel: 'QUERO A OFERTA SIMPLES',
       note: '',
     },
@@ -150,7 +150,7 @@ export const pageContent = {
         { label: 'Calculadora de Preço de Venda', value: 'R$ 19,90' },
         { label: 'Kit de Divulgação', value: 'R$ 24,90' },
       ],
-      previousPrice: '', beforeLabel: 'Bônus no valor de', beforeValue: 'R$ 74,70', todayLabel: 'HOJE POR', installmentCount: 0, installmentValue: '', cashValue: 'R$ 19,90', paymentNote: 'Pagamento único • Acesso vitalício',
+      previousPrice: '', beforeLabel: 'Bônus no valor de', beforeValue: 'R$ 74,70', todayLabel: 'HOJE POR', installmentCount: 2, installmentValue: 'R$ 10,85', cashValue: 'R$ 19,90', paymentNote: 'Acesso vitalício',
       ctaLabel: 'QUERO COMEÇAR COM 33 FORNECEDORES',
       note: '',
     },
@@ -162,7 +162,7 @@ export const pageContent = {
         'Então, antes de finalizar, você pode aproveitar a condição especial e levar também os 3 bônus que ajudam na escolha dos produtos, formação do preço e divulgação da sua loja.',
       ],
       title: 'VOCÊ RECEBE:',
-      previousPrice: '', beforeLabel: '', todayLabel: 'CONDIÇÃO ESPECIAL', installmentCount: 0, installmentValue: '', cashValue: 'R$ 14,90', paymentNote: 'Pagamento único.',
+      previousPrice: '', beforeLabel: '', todayLabel: 'CONDIÇÃO ESPECIAL', installmentCount: 2, installmentValue: 'R$ 8,12', cashValue: 'R$ 14,90', paymentNote: '',
       ctaLabel: 'QUERO A OFERTA COMPLETA POR R$ 14,90', secondaryLabel: 'Não, quero continuar apenas com a Oferta Simples.',
     },
   },
