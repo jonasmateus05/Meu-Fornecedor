@@ -85,11 +85,14 @@ function Price({ data }: { data: PriceData }) {
     <strong>{data.cashValue || 'Preço a definir'}</strong>
     {data.paymentNote && <span>{data.paymentNote}</span>}
   </div>
-  const ready = data.previousPrice || data.installmentValue || data.cashValue
-  return <div className="price" aria-label={ready ? 'Preço da oferta' : 'Preço a definir'}>
-    <span className="price-before"><s>{data.previousPrice ? `De ${data.previousPrice}` : 'Preço anterior a definir'}</s> por apenas</span>
-    <strong>{data.installmentCount && data.installmentValue ? `${data.installmentCount}x de ${data.installmentValue}` : 'Preço a definir'}</strong>
-    <span>ou <b>{data.cashValue || 'valor a definir'}</b> à vista no PIX</span>
+  // Parcelado em destaque e o valor à vista logo abaixo.
+  return <div className="price" aria-label="Preço da oferta">
+    {data.previousPrice && <span className="price-before"><s>De {data.previousPrice}</s></span>}
+    {data.beforeLabel && <span className="price-before">{data.beforeLabel}{data.beforeValue && <> <s>{data.beforeValue}</s></>}</span>}
+    {data.todayLabel && <span className="price-today">{data.todayLabel}</span>}
+    <strong>{data.installmentValue ? `${data.installmentCount}x de ${data.installmentValue}` : 'Preço a definir'}</strong>
+    {data.cashValue && <span className="price-cash">ou <b>{data.cashValue}</b> à vista</span>}
+    {data.paymentNote && <span>{data.paymentNote}</span>}
   </div>
 }
 
