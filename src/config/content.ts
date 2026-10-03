@@ -5,9 +5,9 @@ export type ProductItem = MediaItem & { eyebrow: string; title: string; descript
 // Trechos entre **asteriscos** são exibidos em destaque (negrito, #1f1f1f).
 export const pageContent = {
   urgencyBar: {
-    // Desativada: a copy do Meu Fornecedor não define texto para a faixa superior (não inventar urgência).
-    enabled: false,
-    text: '',
+    // Faixa fixa no topo, solicitada pelo responsável do produto. A data (DD/MM/AAAA) é a do aparelho do visitante.
+    enabled: true,
+    text: 'OFERTA DISPONÍVEL APENAS HOJE',
   },
   hero: {
     image: '/images/hero-mockup-meu-fornecedor.webp',
