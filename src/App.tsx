@@ -51,19 +51,22 @@ function Button({ children, onClick, href, kind = 'primary' }: { children: React
   return href ? <a className={className} href={href} onPointerDown={event => { event.currentTarget.href = withAttributionParams(href) }} onClick={event => { event.currentTarget.href = withAttributionParams(href) }}>{children}</a> : <button className={className} type="button" onClick={onClick}>{children}</button>
 }
 
+// Data no formato DD/MM/AAAA, sempre a do aparelho do visitante.
+const formatToday = () => new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' })
+
 function UrgencyBar() {
-  const formatDate = () => new Intl.DateTimeFormat('pt-BR', {
-    day: 'numeric', month: 'long', year: 'numeric',
-  }).format(new Date())
-  const [localDate, setLocalDate] = useState(formatDate)
+  // Começa vazia para o HTML pré-renderizado não carregar a data do dia do build;
+  // um script no index.html preenche antes do JavaScript e o efeito assume depois (e troca à meia-noite).
+  const [localDate, setLocalDate] = useState('')
 
   useEffect(() => {
+    setLocalDate(formatToday())
     let timer: ReturnType<typeof setTimeout>
     const scheduleNextDay = () => {
       const now = new Date()
       const nextDay = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1)
       timer = setTimeout(() => {
-        setLocalDate(formatDate())
+        setLocalDate(formatToday())
         scheduleNextDay()
       }, nextDay.getTime() - now.getTime() + 100)
     }
@@ -72,7 +75,7 @@ function UrgencyBar() {
   }, [])
 
   if (!pageContent.urgencyBar.enabled) return null
-  return <div className="urgency">{pageContent.urgencyBar.text}, {localDate}</div>
+  return <div className="urgency" role="status">{pageContent.urgencyBar.text} — <span data-today suppressHydrationWarning>{localDate}</span></div>
 }
 
 type PriceData = { previousPrice: string; beforeLabel?: string; beforeValue?: string; todayLabel?: string; installmentCount: number; installmentValue: string; cashValue: string; paymentNote?: string }
